@@ -1,7 +1,7 @@
 import requests
 import json
 
-from api_key import client_id, client_secret
+# from api_key import client_id, client_secret
 from bs4 import BeautifulSoup
 
 api_url = "https://api.artsy.net/api"
@@ -173,7 +173,7 @@ def get_artists_from_zatista(path):
     with open(path, "w") as outfile:
         json.dump(data, outfile)
 if __name__ == "__main__":
-    token = get_token()
+    #token = get_token()
     get_artworks_from_zatista("./artworks.json",100)
     get_artists_from_zatista("./artists.json")
     # get_artworks("./artworks.json", 1000)

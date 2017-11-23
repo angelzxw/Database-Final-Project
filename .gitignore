@@ -4,3 +4,5 @@ node_modules/
 api_key.py
 artworks.json
 artists.json
+artist_list.json
+

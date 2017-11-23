@@ -142,39 +142,44 @@ def get_artworks_from_zatista(path,size):
 def get_artists_from_zatista(path):
     data = []
     for artist,artist_id in artists:
-        r = requests.get("https://www.zatista.com/artist/{}".format(artist))
-        soup = BeautifulSoup(r.content, 'html.parser')
-        artist_content = soup.find(class_="artist-content")
+        try:
+            r = requests.get("https://www.zatista.com/artist/{}".format(artist))
+            soup = BeautifulSoup(r.content, 'html.parser')
+            artist_content = soup.find(class_="artist-content")
         # avator = soup.find(class_="artist-image").find("img")["src"]
         # name = artist_content.find(class_="name").get_text(strip=True)
         # address = artist_content.find(class_="address").get_text(strip=True)
         # self_intro = artist_content.find("p").get_text(strip=True)
-        artist_about = soup.find(class_="about-artist-block")
+            artist_about = soup.find(class_="about-artist-block")
         # gender = artist_about.contents[1].contents[3].get_text(strip=True)
         # statement = artist_about.contents[3].contents[3].get_text(strip=True)
         # education = artist_about.contents[5].contents[3].get_text(strip=True)
         # tags = artist_about.contents[7].contents[3].get_text(strip=True).split(",")
-        about = {}
-        about_title_nodes = artist_about.find_all(class_="artist-block-head")
-        about_content_nodes = artist_about.find_all(class_="artist-block-content")
-        for title,content in zip(about_title_nodes,about_content_nodes):
-            title = title.get_text(strip=True).rstrip(":")
-            content = content.get_text(strip=True)
-            about[title] = content
-        item = {
-            "artist_id":artist_id,
-            "avator":soup.find(class_="artist-image").find("img")["src"],
-            "name":artist_content.find(class_="name").get_text(strip=True),
-            "address":artist_content.find(class_="address").get_text(strip=True),
-            "self_intro":artist_content.find("p").get_text(strip=True),
-        }
-        item.update(about)
-        data.append(item)
+            about = {}
+            about_title_nodes = artist_about.find_all(class_="artist-block-head")
+            about_content_nodes = artist_about.find_all(class_="artist-block-content")
+            for title,content in zip(about_title_nodes,about_content_nodes):
+                title = title.get_text(strip=True).rstrip(":")
+                content = content.get_text(strip=True)
+                about[title] = content
+            item = {
+                "artist_id":artist_id,
+                "avator":soup.find(class_="artist-image").find("img")["src"],
+                "name":artist_content.find(class_="name").get_text(strip=True),
+                "address":artist_content.find(class_="address").get_text(strip=True),
+                "self_intro":artist_content.find("p").get_text(strip=True),
+            }
+            item.update(about)
+            data.append(item)
+        except AttributeError:
+            print("could not fetch artists {}".format(artist))
     with open(path, "w") as outfile:
         json.dump(data, outfile)
 if __name__ == "__main__":
     #token = get_token()
     get_artworks_from_zatista("./artworks.json",100)
+    f = open("./artist_list.json","w")
+    json.dump(artists, f)
     get_artists_from_zatista("./artists.json")
     # get_artworks("./artworks.json", 1000)
     # get_artists("./artists.json",100)

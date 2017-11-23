@@ -5,17 +5,23 @@ CREATE DATABASE gallery;
 SET ROLE 'hw';
 
 CREATE TABLE Artist(
-	artist_id serial primary key, 
+	artist_id integer primary key, 
+	avator varchar(500), 
 	name varchar(100), 
-	url varchar(100), 
-	address varchar(100)
+	address varchar(100), 
+	self_intro varchar(3000), 
+	gender varchar(100)
 );
 
 CREATE TABLE Painting(
-	painting_id serial primary key,
-	name varchar(100),
-	year integer,
-	price float8
+	painting_id integer primary key, 
+	artist_id integer, 
+	price float8, 
+	height float8, 
+	width float8,  
+	img varchar(500), 
+	title varchar(100), 
+	type varchar(100)
 );
 
 CREATE TABLE Customer(
@@ -25,15 +31,9 @@ CREATE TABLE Customer(
 	password text
 );
 
-CREATE TABLE Have(
-	artist_id serial references Artist(artist_id),
-	painting_id serial references Painting(painting_id),
-	primary key(artist_id, painting_id)
-);
-
 CREATE TABLE Buy(
 	customer_id serial references Customer(customer_id),
-	painting_id serial references Painting(painting_id)
+	painting_id references Painting(painting_id)
 );
 
 CREATE TABLE Orders(
@@ -44,7 +44,7 @@ CREATE TABLE Orders(
 
 CREATE TABLE OrderItem(
 	order_number serial references Orders(order_number),
-	painting_id serial references Painting(painting_id),
+	painting_id references Painting(painting_id),
 	price float8,
 	primary key(order_number, painting_id)
 );

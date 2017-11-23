@@ -15,7 +15,7 @@ CREATE TABLE Artist(
 
 CREATE TABLE Painting(
 	painting_id integer primary key, 
-	artist_id integer, 
+	artist_id integer references Artist(artist_id), 
 	price float8, 
 	height float8, 
 	width float8,  
@@ -33,7 +33,7 @@ CREATE TABLE Customer(
 
 CREATE TABLE Buy(
 	customer_id serial references Customer(customer_id),
-	painting_id references Painting(painting_id)
+	painting_id integer references Painting(painting_id)
 );
 
 CREATE TABLE Orders(
@@ -44,7 +44,7 @@ CREATE TABLE Orders(
 
 CREATE TABLE OrderItem(
 	order_number serial references Orders(order_number),
-	painting_id references Painting(painting_id),
+	painting_id integer references Painting(painting_id),
 	price float8,
 	primary key(order_number, painting_id)
 );

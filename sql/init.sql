@@ -32,7 +32,7 @@ CREATE TABLE Have(
 );
 
 CREATE TABLE Buy(
-	user_id serial references Customer(customer_id),
+	customer_id serial references Customer(customer_id),
 	painting_id serial references Painting(painting_id)
 );
 

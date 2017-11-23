@@ -107,6 +107,74 @@ function addCustomer(name, email, password){
     });
 }
 
+function addHave(artist_id, painting_id){
+    const shouldAbort = (err) => {
+        if (err) {
+            console.error('Error in addHave', err.stack);
+            client.query('ROLLBACK', (err) => {
+                if (err) {
+                    console.error('Error rolling back client', err.stack);
+                }
+                // release the client back to the pool
+                done();
+            })
+        }
+        return !!err;
+    };
+
+    client.query('BEGIN', (err) => {
+        if (shouldAbort(err)) return;
+
+        const insertHave = 'INSERT INTO Have(artist_id, painting_id) VALUES($1, $2)';
+        const insertValues = [artist_id, painting_id];
+        client.query(insertHave, insertValues, (err, res) => {
+            if (shouldAbort(err)) return;
+
+            client.query('COMMIT', (err) => {
+                if (err) {
+                    console.error('Error committing transaction: insert buy', err.stack);
+                }
+                done();
+            })
+        })
+    });
+}
+
+function addBuy(customer_id, painting_id){
+    const shouldAbort = (err) => {
+        if (err) {
+            console.error('Error in addBuy', err.stack);
+            client.query('ROLLBACK', (err) => {
+                if (err) {
+                    console.error('Error rolling back client', err.stack);
+                }
+                // release the client back to the pool
+                done();
+            })
+        }
+        return !!err;
+    };
+
+    client.query('BEGIN', (err) => {
+        if (shouldAbort(err)) return;
+
+        const insertBuy = 'INSERT INTO Buy(customer_id, painting_id) VALUES($1, $2)';
+        const insertValues = [customer_id, painting_id];
+        client.query(insertBuy, insertValues, (err, res) => {
+            if (shouldAbort(err)) return;
+
+            client.query('COMMIT', (err) => {
+                if (err) {
+                    console.error('Error committing transaction: insert buy', err.stack);
+                }
+                done();
+            })
+        })
+    });
+}
+
+
+
 pool.end();
 
 

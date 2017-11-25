@@ -177,9 +177,9 @@ def get_artists_from_zatista(path):
         json.dump(data, outfile)
 if __name__ == "__main__":
     #token = get_token()
-    get_artworks_from_zatista("./artworks.json",100)
+    get_artworks_from_zatista("./artworks.json",2000)
     f = open("./artist_list.json","w")
-    json.dump(artists, f)
+    f.write(str(artists))
     get_artists_from_zatista("./artists.json")
     # get_artworks("./artworks.json", 1000)
     # get_artists("./artists.json",100)

@@ -1,0 +1,113 @@
+#about {
+  height: 100%;
+  margin: 0;
+}
+
+.about-scroll {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.about-scroll:hover, .about-scroll:focus {
+  color: #928db3;
+}
+
+.about-caption {
+  color: #fff;
+  text-shadow: 1px 1px 2px black, 0 0 25px #2700fd, 0 0 5px #250d71;  
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  text-align: center;
+  height: auto;
+}
+
+.about-header{
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 80px;
+}
+
+.about-subheader{
+  font-family: 'Varela Round';
+  font-size: 30px;
+}
+
+.about-banner {
+  width: 75%;
+  text-align: center;
+  font-family: 'Varela Round';
+  font-size: 20px;
+  text-align: center; 
+  margin: auto;
+}
+
+.about-wide {
+  text-align: center;
+  background-color: white;
+  opacity: .6;
+  top: 25%;
+  position: absolute;
+}
+
+.about-paragraph{
+    color: #333;
+  font-family: 'Varela Round';
+  font-size: 20px;
+  width: 50%;
+  margin: 20px auto;
+}
+
+.demo-video {
+  margin: 30px 0;
+  padding-left: 10%;    
+}
+
+.demo-text {
+  width: 40%;
+  font-family: 'Varela Round';
+  font-size: 20px;
+  color: #222;
+  padding: 20px;
+
+}
+
+#click-to-sign-up {
+  cursor: pointer;
+}
+
+#click-to-sign-up:hover {
+  color: #250d71;
+  text-shadow: 1px 1px 2px #fff, 0 0 25px #fff;  
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bgimg-2, .bgimg-3{
+  margin: -10px;
+  padding: 20px;
+  min-height: 400px;
+}
+
+.bgimg-1 {
+  background-image: url("https://static1.squarespace.com/static/5202b50ee4b0a1e62378af8b/55a4fa8ae4b09a5577afe080/57bf86d4f7e0abe0fdcb30bf/1472169761233/pc60-ss.jpg?format=1500w");
+  min-height: 100%;
+}
+
+.bgimg-2{
+  background-image: url("../img/Art/BillSantelli/stellar11.jpg");
+}
+.bgimg-3 {
+  background-image: url("../img/Art/EdwardHenrion/9.jpg");
+}
+

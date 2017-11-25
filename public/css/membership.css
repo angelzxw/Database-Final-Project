@@ -1,0 +1,117 @@
+#membership {
+    font-family: 'Varela Round';  
+}
+.mega-pricing-item {
+    background: #fff none repeat scroll 0 0;
+    box-shadow: 0 0 10px #f1f1f1;
+    padding: 15px;
+    text-align: center;
+}
+.mega-pricing-item:hover {
+    box-shadow: 5px 10px 10px #777;
+}
+.mega-pricing-item li {
+    font-size: 18px;
+}
+.bordered-btn {
+    border: 1px solid;
+    color: #fff;
+    display: inline-block;
+    font-weight: 700;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    cursor: pointer;
+} 
+.bordered-btn:hover {
+    color: #fff;
+    text-decoration:none 
+} 
+.btn-1:hover {
+    background-color: rgba(138, 109, 59, 0.43);
+    border-color: #67450b;
+}
+.btn-2:hover {
+    background-color: rgba(124, 129, 138, 0.65);
+    border-color: #777;
+}
+.btn-3:hover {
+    background-color: rgba(173, 136, 52, 0.73);
+    border-color: #8a6d3b;
+}
+.mega-pricing-item ul {
+    line-height: 35px;
+    list-style: outside none none;
+    margin: 0;
+    min-height: 198px;
+    padding: 0;
+}
+.mega-pricing-item a.boxed-btn {
+    margin: 0;
+}
+.mega-pricing-item h1 {
+    font-size: 55px;
+    font-weight: 300;
+}
+.mega-pricing-item h1 span {
+    font-size: 35px;
+    bottom: 4px;
+    position: relative;
+}
+.mega-pricing-item h3 {
+    font-size: 35px;
+    font-weight: 300;
+}
+.gradient-style-1 {
+    background: #f3a126;
+    background: -webkit-linear-gradient(45deg, #6f5417 0%, #f3a126 100%);
+    background: linear-gradient(45deg, #6f5417 0%, #f3a126 100%);
+}
+.gradient-style-2 {
+    background: #E5E4E2;
+    background: -webkit-linear-gradient(45deg, #71716f 0%, #E5E4E2 100%);
+    background: linear-gradient(45deg, #71716f 0%, #E5E4E2 100%)
+}
+.gradient-style-3 {
+    background: #FFD700;
+    background: -webkit-linear-gradient(45deg, #a07406 0%, #FFD700 100%);
+    background: linear-gradient(45deg, #a07406 0%, #FFD700 100%)
+}
+.gradient-style-1,
+.gradient-style-2,
+.gradient-style-3 {
+    color: #fff;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 50px;
+}
+.pricing-icon {
+    font-size: 80px;
+    line-height: 80px;
+    margin-bottom: 20px;
+}
+.gradient-style-1 a,
+.gradient-style-2 a,
+.gradient-style-3 a {
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    color: #fff;
+}
+.pricing-duration {
+    margin-top: -15px;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+.mega-pricing-item.flat-style-pricing {
+    border: 1px solid #f7f9fc;
+    box-shadow: 0 0 0;
+}
+.mega-pricing-item.flat-style-pricing.active {
+    border-top: 3px solid;
+    box-shadow: 0 0 10px #f1f1f1;
+}
+.mega-pricing-item h3 span {
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+}

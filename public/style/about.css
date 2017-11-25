@@ -1,0 +1,136 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+#about {
+  height: 100%;
+  margin: 0;
+}
+
+#click-to-sign-up {
+  cursor: pointer;
+}
+#click-to-sign-up:hover {
+  color: #250d71;
+  text-shadow: 1px 1px 2px #fff, 0 0 25px #fff;  
+}
+
+/* Override UGG site */
+#main {width: 100%; padding:0;}
+.content-asset p {margin:0 auto;}
+.breadcrumb {display:none;}
+
+/* Helpers */
+/**************************/
+.margin-top-10 {padding-top:10px;}
+.margin-bot-10 {padding-bottom:10px;}
+
+/* Typography */
+/**************************/
+#about-parallax h1,
+#about-parallax h2,
+#about-parallax h3,
+#about-parallax span {
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px #2700fd, 0 0 5px #250d71;  
+}
+#about-parallax h1 {
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 80px;
+  text-align:center;
+  padding:0; 
+  margin:0;
+}
+#about-parallax h2 {
+  font-family: 'Varela Round';
+  font-size:32px; 
+  text-align:center;
+  z-index:10; 
+  opacity:.9;
+}
+#about-parallax h3 {
+  font-family: sans-serif; 
+  font-size:32px; 
+  text-align:center;
+  width: 60%;
+  margin:auto;
+}
+#about-parallax p {
+  font-family:'Source Sans Pro', 
+  sans-serif; 
+  font-weight:400; 
+  font-size:20px; 
+  padding: 10px 0;
+}
+
+.first-character {font-weight:400; float: left; font-size: 84px; line-height: 64px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family: 'Source Sans Pro', sans-serif;}
+
+.sc {color: #3b8595;}
+.ny {color: #3d3c3a;}
+.atw {color: #c48660;}
+
+/* Section - Title */
+/**************************/
+#about-parallax .title {background: white; padding: 60px; margin:0 auto; text-align:center;}
+#about-parallax .title h1 {font-size:35px; letter-spacing:8px;}
+
+/* Section - Block */
+/**************************/
+#about-parallax .block {background: white; padding: 60px; width:820px; margin:0 auto; text-align:justify;}
+#about-parallax .block-gray {background: #f2f2f2;padding: 60px;}
+#about-parallax .section-overlay-mask {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; opacity: 0.70;}
+
+/* Section - Parallax */
+/**************************/
+
+#about-parallax .parallax-one, 
+#about-parallax .parallax-two, 
+#about-parallax .parallax-three {
+  padding-top: 200px; 
+  padding-bottom: 200px; 
+  overflow: hidden; 
+  position: relative; 
+  width: 100%;   
+  background-attachment: fixed; 
+  background-size: cover; 
+  -moz-background-size: cover; 
+  -webkit-background-size: cover; 
+  background-repeat: no-repeat; 
+}
+
+#about-parallax .parallax-one {
+  background-image: url(https://static1.squarespace.com/static/5202b50ee4b0a1e62378af8b/55a4fa8ae4b09a5577afe080/57bf86d4f7e0abe0fdcb30bf/1472169761233/pc60-ss.jpg?format=1500w); 
+  background-position: top center;
+}
+#about-parallax .parallax-two {
+  background-image: url(
+
+https://static1.squarespace.com/static/5202b50ee4b0a1e62378af8b/520d384be4b03c465ef5daca/52d60630e4b065c7c0e9da09/1417740696660/chicago1364study-ss.jpg?format=1000w);
+  background-position: center center;
+}
+#about-parallax .parallax-three {
+  background-image: url(
+https://static1.squarespace.com/static/5202b50ee4b0a1e62378af8b/520d7dfde4b06ca52b3f805a/520d7ef4e4b03c465ef69fca/1376616808015/disturbances8-ss.jpg?format=750w    ); 
+  background-position: center center;
+}
+
+/* Extras */
+/**************************/
+#about-parallax .line-break {
+  border-bottom:1px solid black; 
+  width: 150px; 
+  margin:20px auto;
+}
+
+/* Media Queries */
+/**************************/
+@media screen and (max-width: 959px) and (min-width: 768px) {
+  #about-parallax .block {padding: 40px; width:620px;}
+}
+@media screen and (max-width: 767px) {
+  #about-parallax .block {padding: 30px; width:420px;}
+  #about-parallax h2 {font-size:30px;}
+  #about-parallax .block {padding: 30px;}
+  #about-parallax .parallax-one, #about-parallax .parallax-two, #about-parallax .parallax-three {padding-top:100px; padding-bottom:100px;}
+}
+@media screen and (max-width: 479px) {
+  #about-parallax .block {padding: 30px 15px; width:290px;}
+}

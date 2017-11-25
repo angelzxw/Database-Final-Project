@@ -1,0 +1,147 @@
+/* CSS Document */
+/*
+.image-cropper {
+    max-width: 100px;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+.rounded {
+    display: block;
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background:url("https://media.licdn.com/media/AAEAAQAAAAAAAAcwAAAAJGViMjBjYTEyLWVkZDMtNDE0NS1hODQ5LTczNmM0ZDM1NWYwMA.jpg") center no-repeat;
+    background-size:cover;
+}*/
+
+
+.cut-image {
+  overflow: hidden;
+  	width: 50%;
+  	height: 330px;
+  	border: 2px solid #000;
+}
+
+.image-to-cut {
+  position: absolute;
+  left: -10px;
+  top: 100;
+}
+
+
+.image-cropper {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+ /* .box div holds the bottom image */
+
+
+  .box {
+
+    /*background: url("https://angelzxw.files.wordpress.com/2017/01/cropped-20170111_125342.jpg"); */
+    background-repeat: no-repeat
+    background-attachment: scroll left bottom;
+    background-position: left bottom;
+    margin-bottom: 10px;
+    padding: 0 0 15px;
+    width: 800px;
+ }
+
+ /*  this is the title h3 tag and contains the background
+     image for the title    */
+
+  .box h3 {
+
+    background: url(../images/box.jpg) repeat scroll 0 0;
+    color: #000;
+    font-size: 50px;
+    height: 80px;
+    line-height: 30px;
+    margin: 30;
+    padding: 0 15px;
+
+ }
+
+ /* The paragraph tag contains the side borders mark-up */
+
+ .box p {
+    background: url(../images/box.jpg) repeat scroll 0 0;
+    /*background: #ffffff none repeat scroll 0 0;*/
+    border-color: #CCC;
+    border-width: 0 0px;
+    border-style: solid;
+    color: #444444;
+    font-size: 30px;
+    height: 150px;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 15px 14px 0;
+    width: 850px;
+ }
+
+ #all{
+    width:100%;
+    float:left;
+    text-align:center;
+    margin: 30px 0;
+}
+div.sub, iframe {
+    width: 560px;
+    height: 315px;
+    margin: 0 auto;
+    background-color: #777;
+
+}
+
+.crop{
+	float:left;
+	overflow:hidden; /* this is important */
+	position:relative; /* this is important too */
+	width:350px;
+	height:200px;
+	}
+
+.crop img{
+	position:absolute;
+	top:-20px;
+	left:-55px;
+}
+
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: left;
+}

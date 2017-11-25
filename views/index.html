@@ -2,4 +2,57 @@
 
 {% block body %}
   This is the body of the index.
+  <!-- Page Content -->
+      <div class="container">
+          <div class="row carousel-holder">
+              <div class="col-md-12">
+                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" align="middle">
+                      <ol class="carousel-indicators">
+                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+                      </ol>
+                      <div class="carousel-inner">
+                          <div class="item active">
+                              <img src="img/slide/slide_1.jpg" height="100%" alt="" style="max-height:450px;">
+                          </div>
+                          <div class="item">
+                              <img src="img/slide/slide_2.jpg" height="100%" alt="" style="max-height:450px;">
+                          </div>
+                          <div class="item">
+                              <img src="img/slide/slide_3.jpg" height="100%" alt="" style="max-height:450px;">
+                          </div>
+                      </div>
+                      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                          <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                          <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                  </div>
+              </div>
+          </div> <!-- end of sliding window-->
+
+          {%if events %}
+          <div class="col-md-12">
+            	<div class="row carousel-holder">
+                <p class="lead">Featured Works</p>
+                  {% for event in events %}
+                  <div class="w3-container w3-third">
+                    <img src="img/Art/MarilynHenrion/PC68.jpg" style="width:100%;cursor:zoom-in"
+                      onclick="onClick(this)" class="w3-hover-opacity">
+                    <div class="desc">
+                      <h4><a href="product_1.html">Patchwork City 68</a></h4>
+                      <p><a target="_blank" href="artist-marilyn-henrion.html">Marilyn Henrion</a></p>
+                    </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div><!-- end of featured works-->
+          {% endif %}
+        </div>
+      </div>
+<!--End of Page Content -->
+
+
 {% endblock %}

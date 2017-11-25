@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Pool, Client } = require('pg');
 const cryptType = 'bf';
-const connectionString = 'hw://localhost:5432/gallery';
+const connectionString = 'dbuser://localhost:5432/gallery';
 
 const pool = new Pool({
     connectionString: connectionString,
@@ -158,4 +158,6 @@ function addBuy(customer_id, painting_id){
 
 pool.end();
 
-module.exports = router;
+module.exports = {
+    router,addArtist,addPainting,addCustomer,addBuy
+};

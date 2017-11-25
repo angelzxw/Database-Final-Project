@@ -1,8 +1,8 @@
-SET ROLE 'hw';
+SET ROLE 'dbuser';
 DROP DATABASE IF EXISTS gallery;
 CREATE DATABASE gallery;
 \c gallery;
-SET ROLE 'hw';
+SET ROLE 'dbuser';
 
 CREATE TABLE Artist(
 	artist_id integer primary key, 

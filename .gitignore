@@ -5,4 +5,5 @@ api_key.py
 artworks.json
 artists.json
 artist_list.json
+dbconfig.js
 

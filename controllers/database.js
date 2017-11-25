@@ -3,9 +3,16 @@ const router = express.Router();
 const { Pool, Client } = require('pg');
 const cryptType = 'bf';
 const connectionString = 'dbuser://localhost:5432/gallery';
-
+const {dbuser,dbpassword} = require("../dbconfig");
+//const pool = new Pool({
+//    connectionString: connectionString,
+//});
 const pool = new Pool({
-    connectionString: connectionString,
+  user: dbuser,
+  host: 'localhost',
+  database: 'gallery',
+  password: dbpassword,
+  port: 5432,
 });
 
 function addArtist(artist_id, avator, name, address, self_intro, gender){
@@ -156,7 +163,7 @@ function addBuy(customer_id, painting_id){
     });
 }
 
-pool.end();
+//pool.end();
 
 module.exports = {
     router,addArtist,addPainting,addCustomer,addBuy

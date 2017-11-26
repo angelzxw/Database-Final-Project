@@ -32,6 +32,7 @@ app.set('view engine', 'html');
 
 // Now, attach our "controllers" to our "routes".
 app.get('/', indexControllers.index);
+app.get('/about', indexControllers.about);
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.

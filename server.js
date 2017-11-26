@@ -4,6 +4,12 @@ const express = require('express');
 
 const app = express();
 
+app.use('/img', express.static(__dirname + '/public/img'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
+app.use('/partials', express.static(__dirname + '/public/partials'));
+app.use('/scss', express.static(__dirname + '/public/scss'));
+app.use('/fonts', express.static(__dirname + '/public/fonts'));
 // Import our controllers from their files. Notice how we're
 // giving the `require` built-in function the path a file
 // locally instead of a dependency that was installed as

@@ -1,0 +1,27 @@
+@import url('./about.css');
+@import url('./art.css');
+@import url('./artist_profile.css');
+@import url('./artists.css');
+@import url('./contact.css');
+@import url('./login.css');
+@import url('./nav.css');
+@import url('./membership.css');
+@import url('./team.css');
+
+
+@import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+
+@font-face {
+  font-family: 'Berkshire Swash';
+  src: url('../fonts/BerkshireSwash-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Varela Round';
+  src: url('../fonts/VarelaRound-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}

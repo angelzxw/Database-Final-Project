@@ -46,6 +46,7 @@ app.use('/art', require('./controllers/art.js'));
 app.use('/artists', require('./controllers/artists.js'));
 app.use('/items', require('./controllers/items.js'));
 app.use('/account', require('./controllers/account.js'));
+app.use('/contact', require('./controllers/contact.js'));
 
 // Start up the application and listen on the specified
 // port, or default to port 4000.

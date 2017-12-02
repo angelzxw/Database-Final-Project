@@ -1,5 +1,24 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+{%if events %}
+<section class="cd-gallery">
+  <div class="container"><div class="row">
+      <ul class="art-grid">
+        {% for event in events %}
+        <li>
+            <img src="img/Art/CarolePKunstadt/SteppingStones.jpg" alt="HB" class="w3-hover-opacity artwork-image" onclick="onClick(this)">
+            <div class="desc">
+                <h4><a href="#.html">Stepping Stones</a></h4>
+                <h5></h5>
+                <p><a target="_blank" href="">CAROLE P. KUNSTADT</a></p>
+                <p></p>
+            </div>
+        </li>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 {% endblock %}

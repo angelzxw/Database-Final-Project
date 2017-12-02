@@ -1,5 +1,90 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="product-image">
+                    <img src="img/Art/MarilynHenrion/PC68.jpg" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
+                </div> <!-- /.product-image -->
+                <div class="product-information">
+                    <h2>Patchwork City 68</h2>
+                    <a href="artist-marilyn-henrion.html">Marilyn Henrion</a><br>
+                    <p>24"x48"x1" mixed media linen collage on stretched canvas, framed</p>
+                    <p class="product-infos">
+                        <span>Price: $6,000.00</span>
+                    </p>
+                    <ul class="product-buttons">
+                        <li>
+                            <a href="shoppingcart.html" class="main-btn">Buy Now</a>
+                        </li>
+                        <li>
+                            <a href="shoppingcart.html" class="main-btn">Add to Cart</a>
+                        </li>
+                    </ul>
+                </div> <!-- /.product-information -->
+            </div> <!-- /.col-md-8 -->
+            <!--
+            <div class="col-md-4 col-sm-8">
+                <div class="product-item-2">
+                    <div class="product-thumb">
+                      <img src="img/Art/MarilynHenrion/PC67.jpg" alt="">
+                    </div> --><!-- /.product-thumb -->
+                     <!--
+                    <div class="product-content overlay">
+                        <h5><a href="#">Patchwork City 67</a></h5>
+                        <span class="tagline">MARILYN HENRION</span>
+                        <span class="price">$6,000.00</span>
+                        <p>24"x48"x1" mixed media linen collage on stretched canvas, framed</p>
+                    </div>--> <!-- /.product-content -->
+                <!--</div> --><!-- /.product-item-2 -->
+                <!--<div class="product-item-2">
+                    <div class="product-thumb">
+                        <img src="img/Art/MarilynHenrion/PC66.jpg" alt="Product Title">
+                    </div>--> <!-- /.product-thumb -->
+                    <!--<div class="product-content overlay">
+                        <h5><a href="#">Patchwork City 66</a></h5>
+                        <span class="tagline">MARILYN HENRIONe</span>
+                        <span class="price">$6,000.00</span>
+                        <p>24"x48"x1" mixed media linen collage on stretched canvas, framed</p>
+                    </div>--> <!-- /.product-content -->
+                <!--</div>--> <!-- /.product-item-2 -->
+            <!--</div>--> <!-- /.col-md-4 -->
 
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+</div> <!-- /.content-section -->
+
+<div class="content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-title">
+                <h2>You might be also interested in...</h2>
+            </div> <!-- /.section -->
+        </div> <!-- /.row -->
+            <!-- pick 3 artworks from the same artist?-->
+            {% for event in events %}
+            <div class="col-md-3 col-sm-6">
+                <div class="product-item-vote">
+                    <div class="product-thumb">
+                        <img src="img/Art/MarilynHenrion/3.jpg" alt="">
+                    </div> <!-- /.product-thum -->
+                    <div class="product-content">
+                        <h5><a href="#">Green Sea</a></h5>
+                        <span class="tagline">MARILYN HENRION</span>
+                    </div> <!-- /.product-content -->
+                </div> <!-- /.product-item-vote -->
+            </div> <!-- /.col-md-3 -->
+            {% endfor %}
+
+        </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+      <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+      <div class="w3-modal-content w3-animate-zoom">
+        <img id="img01" style="width:100%">
+      </div>
+    </div>
+</div> <!-- /.content-section -->
 {% endblock %}

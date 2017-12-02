@@ -3,17 +3,27 @@ const router = express.Router();
 
 router.get('/', artists);
 
-function artists(req, res) {
-  res.render('artists', { title: 'Artists' });
-  /*
-  EventModel.getAllEvents((err, events) => {
+router.get('/', allArtists);
+router.get('/:id', artistDetail);
+
+function allArtists(req, res) {
+    res.render('art', { title: 'Art' });
+}
+
+function artistDetail(req, res) {
+  const eventId = req.params.id;
+  EventModel.getAnEvent(eventId, (err, event) => {
+    if(err) {
+      res.redirect('/artists');
+      return;
+    }
+    console.log(event);
     const context = {
-      title: 'List of Events',
-      events: events,
+      title: 'Art Information',
+      event: event,
     };
-    res.render('index', context);
+    res.render('artist_detail', context);
   });
-  */
 }
 
 module.exports = router;

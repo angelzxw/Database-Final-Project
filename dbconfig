@@ -1,4 +1,0 @@
-module.exports = {
-    dbuser:"dbuser",
-    dbpassword:"cs537db2017art",
-};

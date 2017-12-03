@@ -1,26 +1,33 @@
 const express = require('express');
 const router = express.Router();
-
-router.get('/', artists);
+const artistModel = require("../models/artistModel.js");
+// router.get('/', artists);
 
 router.get('/', allArtists);
-router.get('/:id', artistDetail);
+router.get('/:id*', artistDetail);
 
 function allArtists(req, res) {
-    res.render('art', { title: 'Art' });
+  console.log("controller allArtists");
+  
+  let allArtists = artistModel.getAllArtists();
+  context = {
+    allArtists : allArtists,
+  }
+    res.render('artists', context);
 }
 
 function artistDetail(req, res) {
-  const eventId = req.params.id;
-  EventModel.getAnEvent(eventId, (err, event) => {
+  const artist_id = req.params.id;
+  console.log("anchor" + req.params[0]);
+  artistModel.getArtist(artist_id, (err, artist) => {
     if(err) {
       res.redirect('/artists');
       return;
     }
-    console.log(event);
+    console.log(artist);
     const context = {
       title: 'Art Information',
-      event: event,
+      artist: artist,
     };
     res.render('artist_detail', context);
   });

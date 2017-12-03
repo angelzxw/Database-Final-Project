@@ -163,8 +163,40 @@ function addBuy(customer_id, painting_id){
     });
 }
 
+
+function getAllArtists(){
+    console.log("model getAllArtists");
+    pool.connect((err, client, done) => {
+        if (err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArtists', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+
+            const insertBuy = 'SELECT * FROM Artist';
+            console.log("call function");
+            client.query(insertBuy, (err, res) => {
+                return res;
+            })
+        });
+    });
+}
+
 //pool.end();
 
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy
+    router,addArtist,addPainting,addCustomer,addBuy, getAllArtists,
 };

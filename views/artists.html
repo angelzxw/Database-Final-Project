@@ -3,27 +3,29 @@
 {% block body %}
 
 
-{%if events %}
+{%if allArtists %}
   <div class="row">
-    {% for event in events %}
+    {% for artist in allArtists %}
     <div class="col-md-4 col-sm-6">
         <div class="panel panel-default artist-card">
             <div class="artist-heading">
-                <img src="img/Art/MarilynHenrion/1.jpg">
+                <img src="{{artist[avatar]}}">
             </div>
-            <div class="artist-figure">
+           <!-- <div class="artist-figure">
                 <img class="img-responsive img-circle" src="img/Art/MarilynHenrion/0.jpg">
             </div>
+            seems there is only one avatar field in db
+            -->
             <div class="artist-body text-center">
                 <h4 class="artist-header">
-                    <a href="artist-marilyn-henrion.html">Marilyn Henrion</a><br>
-                    <a href="artist-marilyn-henrion.html#about-artist"><i class="fa fa-user-circle"></i></a>
+                    <a href="/artist/{{artist[artist_id]}}">{{artist[name]}}</a><br>
+                    <a href="/artist/{{artist[artist_id]}}/about-artist"><i class="fa fa-user-circle"></i></a>
                     <a href=""><i class="fa fa-heart"></i></a>
-                    <a href="artist-marilyn-henrion.html#artwork"><i class="fa fa-image"></i></a>
+                    <a href="/artist/{{artist[artist_id]}}/artwork"><i class="fa fa-image"></i></a>
                 </h4>
             </div>
             <div class="artist-intro">
-                The award-winning works of this Cooper Union graduate and lifelong New Yorker are included in museum, corporate and private collections worldwide and have been exhibited throughout the U.S. and abroad.
+            {{artist[self_intro]}}
             </div>
         </div>
     </div>

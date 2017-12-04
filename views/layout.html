@@ -214,6 +214,13 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
        document.getElementById("modal01").style.display = "block";
      }
    </script>
+   {% if anchor %}
+      <script>
+          window.onload = function (event) {
+                window.location.hash = "#{{anchor}}";
+            };
+      </script>
+   {% endif %}
 
 </body>
 </html>

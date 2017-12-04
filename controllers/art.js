@@ -32,7 +32,7 @@ function artDetail(req, res) {
       return;
     }
     console.log(art);
-    artModel.getNArtByArtistID(5, art[0].aritst_id, (err, relatedArts)=>{
+    artModel.getNArtByArtistID(5, art[0].artist_id, art[0].painting_id, (err, relatedArts)=>{
       if(err) {
         console.log(err.stack);
         res.redirect('/art');

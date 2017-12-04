@@ -323,7 +323,8 @@ function getArtByID(painting_id, callback) {
 }
 
 //getNArtByArtistID(10,9208);
-function getNArtByArtistID(n,artist_id, callback) {
+function getNArtByArtistID(n,artist_id, exclude_id, callback) {
+    exclude_id = exclude_id == undefined ? -1 : exclude_id;
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -343,9 +344,10 @@ function getNArtByArtistID(n,artist_id, callback) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT p.painting_id, p.artist_id, p.price, p.height, p.width, p.img, p.title, p.type FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1 LIMIT $2";
+            const query = "SELECT p.painting_id, p.artist_id, p.price, p.height, p.width, p.img, p.title, p.type FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1 AND p.painting_id != $2 LIMIT $3";
             console.log("query is :", query);
-            const values = [artist_id,n];
+            const values = [artist_id, exclude_id, n];
+            console.log("get nArtUsingID params", values);
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
                 console.log("model getnartfromaritstid result: ", res.rows);

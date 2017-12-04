@@ -165,7 +165,7 @@ function addBuy(customer_id, painting_id){
 }
 //pool.end();
 //getAllArtists();
-function getAllArtists() {
+function getAllArtists(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -183,21 +183,23 @@ function getAllArtists() {
             return !!err;
         };
 
+        
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
             const query = "SELECT * FROM ARTIST";
             const values = [];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                console.log(res.rows);
+                callback(err, err ? [] : res.rows);
             })
         });
+       
     });
 }
 
 //getArtsByID(9208);
 
-function getArtistByID(artist_id) {
+function getArtistByID(artist_id, callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -221,14 +223,14 @@ function getArtistByID(artist_id) {
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                console.log(res.rows);
+                callback(err, res.rows);
             })
         });
     });
 }
 
 //getAllArts();
-function getAllArts() {
+function getAllArts(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -248,17 +250,17 @@ function getAllArts() {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT * FROM Painting";
+            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id";
             const values = [];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                console.log(res.rows);
+               callback(err, res.rows);
             })
         });
     });
 }
 //getArtByArtistID(9208);
-function getArtByArtistID(artist_id) {
+function getArtByArtistID(artist_id, callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -278,17 +280,51 @@ function getArtByArtistID(artist_id) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT p FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1";
+            const query = "SELECT p.painting_id, p.artist_id, p.price, p.height, p.width, p.img, p.title, p.type FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1";
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                console.log(res.rows);
+                callback(err, res.rows);
             })
         });
     });
 }
+
+function getArtByID(painting_id, callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getArtistByID', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+         
+            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id WHERE p.painting_id = $1";
+            const values = [painting_id];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                // console.log("query result", res.rows);
+                callback(err, res.rows);
+            })
+        });
+    });
+}
+
 //getNArtByArtistID(10,9208);
-function getNArtByArtistID(n,artist_id) {
+function getNArtByArtistID(n,artist_id, exclude_id, callback) {
+    exclude_id = exclude_id == undefined ? -1 : exclude_id;
     pool.connect((err, client, done) => {
         if(err) throw err;
 
@@ -308,16 +344,19 @@ function getNArtByArtistID(n,artist_id) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT p FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1 LIMIT $2";
-            const values = [artist_id,n];
+            const query = "SELECT p.painting_id, p.artist_id, p.price, p.height, p.width, p.img, p.title, p.type FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1 AND p.painting_id != $2 LIMIT $3";
+            console.log("query is :", query);
+            const values = [artist_id, exclude_id, n];
+            console.log("get nArtUsingID params", values);
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                console.log(res.rows);
+                console.log("model getnartfromaritstid result: ", res.rows);
+                callback(err, res.rows);
             })
         });
     });
 }
 
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByArtistID,getNArtByArtistID
+    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID
 };

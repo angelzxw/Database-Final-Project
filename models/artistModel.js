@@ -9,10 +9,11 @@ const {dbuser,dbpassword} = require("../dbconfig");
 //});
 const pool = new Pool({
   user: dbuser,
-  host: 'localhost',
+  host: 'ec2-13-58-21-188.us-east-2.compute.amazonaws.com',
   database: 'gallery',
   password: dbpassword,
   port: 5432,
+    ssl:true
 });
 
 function addArtist(artist_id, avator, name, address, self_intro, gender){
@@ -84,5 +85,5 @@ function getAllArtists(){
 }
 
 module.exports = {
-    router,addArtist, getAllArtists,
+    router,addArtist,getAllArtists
 };

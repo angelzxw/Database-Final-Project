@@ -9,10 +9,11 @@ const {dbuser,dbpassword} = require("../dbconfig");
 //});
 const pool = new Pool({
   user: dbuser,
-  host: 'localhost',
+  host: 'ec2-13-58-21-188.us-east-2.compute.amazonaws.com',
   database: 'gallery',
   password: dbpassword,
   port: 5432,
+  ssl:true
 });
 
 function addArtist(artist_id, avator, name, address, self_intro, gender){
@@ -162,9 +163,161 @@ function addBuy(customer_id, painting_id){
         });
     });
 }
-
 //pool.end();
+//getAllArtists();
+function getAllArtists() {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArtists', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT * FROM ARTIST";
+            const values = [];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                console.log(res.rows);
+            })
+        });
+    });
+}
+
+//getArtsByID(9208);
+
+function getArtistByID(artist_id) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getArtsByID', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT * FROM ARTIST WHERE artist_id = $1";
+            const values = [artist_id];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                console.log(res.rows);
+            })
+        });
+    });
+}
+
+//getAllArts();
+function getAllArts() {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArts', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT * FROM Painting";
+            const values = [];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                console.log(res.rows);
+            })
+        });
+    });
+}
+//getArtByArtistID(9208);
+function getArtByArtistID(artist_id) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getArtByArtistID', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT p FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1";
+            const values = [artist_id];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                console.log(res.rows);
+            })
+        });
+    });
+}
+//getNArtByArtistID(10,9208);
+function getNArtByArtistID(n,artist_id) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getArtByArtistID', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT p FROM ARTIST as a join Painting as p on a.artist_id=p.artist_id WHERE a.artist_id = $1 LIMIT $2";
+            const values = [artist_id,n];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                console.log(res.rows);
+            })
+        });
+    });
+}
 
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy
+    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByArtistID,getNArtByArtistID
 };

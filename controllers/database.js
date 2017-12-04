@@ -203,7 +203,7 @@ function getArtistByID(artist_id) {
 
         const shouldAbort = (err) => {
             if (err) {
-                console.error('Error in getArtsByID', err.stack);
+                console.error('Error in getArtistByID', err.stack);
                 client.query('ROLLBACK', (err) => {
                     if (err) {
                         console.error('Error rolling back client', err.stack);

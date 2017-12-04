@@ -40,7 +40,7 @@ function allArtists(req, res) {
         title: 'All Artists',
         allArtists: allArtists,
     };
-    
+    console.log(allArtists);
     res.render('artists', context);
     
   });

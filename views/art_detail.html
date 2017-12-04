@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="product-image">
-                    <img src="img/Art/MarilynHenrion/PC68.jpg" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
+                    <img src="{{art[0].img}}" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
                 </div> <!-- /.product-image -->
                 <div class="product-information">
-                    <h2>Patchwork City 68</h2>
-                    <a href="artist-marilyn-henrion.html">Marilyn Henrion</a><br>
-                    <p>24"x48"x1" mixed media linen collage on stretched canvas, framed</p>
+                    <h2>{{art[0].title}}</h2>
+                    <a href="/artists/{{art[0].artist_id}}">{{art[0].name}}</a><br>
+                    <p>{{art[0].height}}"x{{art[0].width}}"</p>
                     <p class="product-infos">
-                        <span>Price: $6,000.00</span>
+                        <span>Price: {{art[0].price}}</span>
                     </p>
                     <ul class="product-buttons">
                         <li>
@@ -64,15 +64,15 @@
             </div> <!-- /.section -->
         </div> <!-- /.row -->
             <!-- pick 3 artworks from the same artist?-->
-            {% for event in events %}
+            {% for art in relatedArts %}
             <div class="col-md-3 col-sm-6">
                 <div class="product-item-vote">
                     <div class="product-thumb">
-                        <img src="img/Art/MarilynHenrion/3.jpg" alt="">
+                        <img src="{{art.img}}" alt="">
                     </div> <!-- /.product-thum -->
                     <div class="product-content">
-                        <h5><a href="#">Green Sea</a></h5>
-                        <span class="tagline">MARILYN HENRION</span>
+                        <h5><a href="/art/{{art.painting_id}}">{{art.title}}</a></a></h5>
+                        <span class="tagline">{{art.name}}</span>
                     </div> <!-- /.product-content -->
                 </div> <!-- /.product-item-vote -->
             </div> <!-- /.col-md-3 -->

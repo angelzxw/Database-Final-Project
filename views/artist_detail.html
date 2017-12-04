@@ -10,7 +10,7 @@
 
                     <div class="profile-pic"
                         style="
-                            background: url('img/Art/EdwardHenrion/profile_pic.jpg') no-repeat;
+                            background: url('{{artist[0].avator}}') no-repeat;
                             background-position: -5px -20px;"
                         id="profile_pic">
                     </div>
@@ -49,7 +49,8 @@
                     <div class="tab-pane fade in active" id="artwork">
                         <div class="rela-block content">
                             {% for art in arts %}
-                                    <div class="rela-inline image" style="background: url('{{art.img}}') center center no-repeat;">
+                                    <div class="rela-inline image" style="background: url('{{art.img}}') center center no-repeat;"
+                                    href="/arts/{{art.painting_id}}">
                                     </div>
                             {% endfor %}
                         </div>

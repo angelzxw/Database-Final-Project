@@ -3,6 +3,28 @@ Ref:
 Thanks to:
 http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html
 */
+*, *:before, *:after {box-sizing:  border-box !important;}
+
+
+.rowart {
+ -moz-column-width: 25em;
+ -webkit-column-width: 25em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap:1em;
+
+}
+
+.rowart > .col-md-4art {
+ display: inline-block;
+ padding:  .33rem;
+ width:  100%;
+ float:none;
+}
+
+.well {
+ position:relative;
+ display: block;
+}
 
 .art-grid {
   position: relative;

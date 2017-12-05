@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
-
-{%if allArtists %}
-  <div class="row">
+<section class="cd-gallery">
+  <div class="container">
+    <div class="col-md-12">
+    {%if allArtists %}
+    <div class="row carousel-holder">
     {% for artist in allArtists %}
     <div class="col-md-4 col-sm-6">
         <div class="panel panel-default artist-card">
@@ -14,8 +15,8 @@
             <div class="artist-figure">
                 <img class="img-responsive img-circle" src="{{artist.avator}}">
             </div>
-            
-            
+
+
             <div class="artist-body text-center">
                 <h4 class="artist-header">
                     <a href="/artists/{{artist.artist_id}}">{{artist[name]}}</a><br>
@@ -30,6 +31,8 @@
         </div>
     </div>
     {% endfor %}
+    </div>
+    </div>
     </div>
 </section>
 {% endif %}

@@ -60,12 +60,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 section-title">
-                <h2>You might be also interested in...</h2>
+                <h2>You might be also interested in {{art[0].name}}'s...</h2>
             </div> <!-- /.section -->
         </div> <!-- /.row -->
             <!-- pick 3 artworks from the same artist?-->
+            <div class="rowart">
             {% for art in relatedArts %}
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6 col-md-4art">
                 <div class="product-item-vote">
                     <div class="product-thumb">
                         <img src="{{art.img}}" alt="">
@@ -77,14 +78,8 @@
                 </div> <!-- /.product-item-vote -->
             </div> <!-- /.col-md-3 -->
             {% endfor %}
-
+          </div>
         </div> <!-- /.row -->
     </div> <!-- /.container -->
-    <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-      <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-      <div class="w3-modal-content w3-animate-zoom">
-        <img id="img01" style="width:100%">
-      </div>
-    </div>
 </div> <!-- /.content-section -->
 {% endblock %}

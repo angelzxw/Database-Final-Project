@@ -2,27 +2,32 @@
 
 {% block body %}
   <!-- Page Content -->
+  <session class="cd-gallery">
       <div class="container">
+
           <div class="row carousel-holder">
               <div class="col-md-12">
+
                   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" align="middle">
                       <ol class="carousel-indicators">
                           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                           <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
                           <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+
                       </ol>
                       <div class="carousel-inner">
-                          <div class="item active">
-                              <img src="img/slide/slide_1.jpg" height="100%" alt="" style="max-height:450px;">
-                          </div>
-                          <div class="item">
-                              <img src="img/slide/slide_2.jpg" height="100%" alt="" style="max-height:450px;">
-                          </div>
-                          <div class="item">
-                              <img src="img/slide/slide_3.jpg" height="100%" alt="" style="max-height:450px;">
-                          </div>
+                        <div class="item active">
+                            <img src="img/slide/slide_1.jpg" height="100%" alt="" style="max-height:450px;">
+                        </div>
+                        <div class="item">
+                            <img src="img/slide/slide_2.jpg" height="100%" alt="" style="max-height:450px;">
+                        </div>
+                        <div class="item">
+                            <img src="img/slide/slide_3.jpg" height="100%" alt="" style="max-height:450px;">
+                        </div>
+
                       </div>
-                      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                      <a class="left carousel-control" data-slide="prev">
                           <span class="glyphicon glyphicon-chevron-left"></span>
                       </a>
                       <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
@@ -31,7 +36,8 @@
                   </div>
               </div>
           </div> <!-- end of sliding window-->
-
+      </div>
+<!--
           {%if events %}
           <div class="col-md-12">
             	<div class="row carousel-holder">
@@ -47,10 +53,134 @@
                   </div>
                   {% endfor %}
               </div>
-          </div><!-- end of featured works-->
-          {% endif %}
+          </div>
+          {% endif %}-->
+      <div class="container">
+          <div class="col-md-12">
+            <h3 class="lead">Featured Works</h3>
+            <div class="rowart carousel-holder">
+
+              <div class="w3-container w3-third col-md-4art">
+                  <div class="product-image">
+                    <img src="https://zatista-images.s3.amazonaws.com/products/5659_4970bf169956c57a138c23a588053c60f4bd6a54_xR730G8IM6l1gVNn_1_642x0.jpg" style="width:100%" onclick="window.location='/art/68265'" class="w3-hover-opacity">
+                  </div> <!-- /.product-image -->
+                  <div class="product-information">
+                      <h3><a href="/art/68265">White Moth on Red Abstract</a></h3>
+                      <h4><a href="/artists/2406">Megan Buccere</a></h4>
+                  </div> <!-- /.product-information -->
+              </div> <!-- /.w3-container w3-third -->
+
+              <div class="w3-container w3-third col-md-4art">
+                  <div class="product-image">
+                    <img src="https://zatista-images.s3.amazonaws.com/products/18988_tjinqjilg180nvgqud8lbu36u6_U3rTbSLKZT8Qh09f_1_642x0.jpg" style="width:100%" onclick="window.location='/art/59440'" class="w3-hover-opacity">
+                  </div> <!-- /.product-image -->
+                  <div class="product-information">
+                      <h3><a href="/art/59440">Through The Old Lens (Oceans)</a></h3>
+                      <h4><a href="/artists/6333">Nestor Toro</a></h4>
+                  </div> <!-- /.product-information -->
+              </div> <!-- /.w3-container w3-third -->
+
+              <div class="w3-container w3-third col-md-4art">
+                  <div class="product-image">
+                    <img src="https://zatista-images.s3.amazonaws.com/products/3147_ed0baed25100695d197d74e2b34e20a1d378a073_dyXk609p4Nq86btZ_1_642x0.jpg" style="width:100%" onclick="window.location='/art/70264'" class="w3-hover-opacity">
+                  </div> <!-- /.product-image -->
+                  <div class="product-information">
+                      <h3><a href="/art/70264">Ocean Waves</a></h3>
+                      <h4><a href="/artists/1411">Simon Fairless</a></h4>
+                  </div> <!-- /.product-information -->
+              </div> <!-- /.w3-container w3-third -->
+
+              <div class="w3-container w3-third col-md-4art">
+                  <div class="product-image">
+                    <img src="https://zatista-images.s3.amazonaws.com/products/24258_236b226402ba32507365a33ea6ccc267518393b8_85LUUHXeIC6nJg11_1_642x0.jpg" style="width:100%" onclick="window.location='/art/62678'" class="w3-hover-opacity">
+                  </div> <!-- /.product-image -->
+                  <div class="product-information">
+                      <h3><a href="/art/62678">Original Painting Watercolor Painting Watercolor</a></h3>
+                      <h4><a href="/artists/7853">Jim Lagasse</a></h4>
+                  </div> <!-- /.product-information -->
+              </div> <!-- /.w3-container w3-third -->
+
+              <div class="w3-container w3-third col-md-4art">
+                  <div class="product-image">
+                    <img src="https://zatista-images.s3.amazonaws.com/products/15732_ida2v8qidm70bf2idgg7ie9ua1_EvXQSbyRaq6od0QI_1_642x0.jpg" style="width:100%" onclick="window.location='/art/39851'" class="w3-hover-opacity">
+                  <div class="product-information">
+                      <h3><a href="/art/39851">Between Friends</a></h3>
+                      <h4><a href="/artists/5569">Dwayne Wolff</a></h4>
+                  </div> <!-- /.product-information -->
+              </div> <!-- /.w3-container w3-third -->
+
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="container">
+            <div class="col-md-12">
+              <h3 class="lead">New To Artsify</h3>
+              <div class="rowart carousel-holder">
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                      <img src="https://zatista-images.s3.amazonaws.com/products/9079_eaf48dc4e21dcee0731e7377b2768df63a3790a0_99DcCH0d9TPsp8hA_1_642x0.jpg" style="width:100%" onclick="window.location='/art/73423'" class="w3-hover-opacity">
+                    </div> <!-- /.product-image -->
+                    <div class="product-information">
+                      <h3><a href="/art/73423">Lille (DANCER SERIES)</a></h3>
+                      <h4><a href="/artists/3677">Katia Zhukova</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                      <img src="https://zatista-images.s3.amazonaws.com/products/9215_ed26aaa70d461ff53e0ee835ee37c39f8fb78dc3_0TfsXJfXc2AXUT6M_1_642x0.jpg" style="width:100%" onclick="window.location='/art/73789'" class="w3-hover-opacity">
+                    </div> <!-- /.product-image -->
+                    <div class="product-information">
+                      <h3><a href="/art/73789">Water Flow</a></h3>
+                      <h4><a href="/artists/3715">Melissa McGill</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                      <img src="https://zatista-images.s3.amazonaws.com/products/22930_ebe26db8cbbc52bb32181364c4540db4e3051ff8_FSj0UP21so3Ds7CP_1_642x0.jpg" style="width:100%" onclick="window.location='/art/69318'" class="w3-hover-opacity">
+                    </div> <!-- /.product-image -->
+                    <div class="product-information">
+                      <h3><a href="/art/69318">The Alex Katz Museum/Ada's Room</a></h3>
+                      <h4><a href="/artists/7452">Brian Nash</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                        <img src="https://zatista-images.s3.amazonaws.com/products/15250_bevnshk6kfsoi89326eu44eb56_RYiV1sr1luLcb2v4_1_642x0.jpg" style="width:100%" onclick="window.location='/art/39851'" class="w3-hover-opacity">
+                    </div> <!-- /.product-image -->
+                    <div class="product-information">
+                      <h3><a href="/art/49887">Rocky Shore</a></h3>
+                      <h4><a href="/artists/5434">Thong Le</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                      <img src="https://zatista-images.s3.amazonaws.com/products/14384_hlsa5qjuhltjn7fha6dukg02i4_bXFxRK8d2f0GdcKD_1_642x0.jpg" style="width:100%" onclick="window.location='/art/36460'" class="w3-hover-opacity">
+                    </div> <!-- /.product-image -->
+                    <div class="product-information">
+                      <h3><a href="/art/36460">Spatial Anomaly 2.26</a></h3>
+                      <h4><a href="/artists/5131">McCain McMurray</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+                <div class="w3-container w3-third col-md-4art">
+                    <div class="product-image">
+                      <img src="https://zatista-images.s3.amazonaws.com/products/1735_sveu4atdtjtq6iem4drlt0mrb0_Df6Dfc1G5MbRv2TF_1_642x0.jpg" style="width:100%" onclick="window.location='/art/39851'" class="w3-hover-opacity">
+                    <div class="product-information">
+                        <h3><a href="/art/53174">Pierro</a></h3>
+                        <h4><a href="/artists/659">Igor Shulman</a></h4>
+                    </div> <!-- /.product-information -->
+                </div> <!-- /.w3-container w3-third -->
+
+              </div>
+            </div>
+          </div>
+
+  </session>
 <!--End of Page Content -->
 
 

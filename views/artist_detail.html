@@ -15,7 +15,7 @@
                         id="profile_pic">
                     </div>
                     <div class="rela-block profile-name-container">
-                        <div class="rela-block user-name" id="user_name">Edward Henrion</div>
+                        <div class="rela-block user-name" id="user_name">{{artist.name}}</div>
                         <div class="rela-block user-desc" id="user_description">
                           <a class="rela-block user-desc" href="https://www.edwardhenrion.com/">Artist</a>
                         </div>
@@ -45,7 +45,7 @@
                 <div class="tab-content">
                     <!--Artwork -->
                     {%if arts %}
-                    
+
                     <div class="tab-pane fade in active" id="artwork">
                         <div class="rela-block content">
                             {% for art in arts %}
@@ -56,12 +56,15 @@
                         </div>
                     </div>
                    {% endif %}
-                
+
                     <!-- -->
-                    <div class="tab-pane fade in" id="about-artist">
-                        <h3 class="artist-bio">
-                            {{artist[0].self_intro}}
-                        </h3>
+                    <div class="tab-pane fade in active" id="about-artist">
+
+                      <div class="rela-block content">
+                        <h3>
+                              {{artist[0].self_intro}}
+                          </h3>
+                      </div>
                     </div>
                 </div>
             </div></div>

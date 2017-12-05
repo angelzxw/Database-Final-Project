@@ -8,25 +8,28 @@
                 <div class="product-image">
                     <img src="{{art[0].img}}" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
                 </div> <!-- /.product-image -->
-                <div class="product-information">
-                    <h2>{{art[0].title}}</h2>
-                    <a href="/artists/{{art[0].artist_id}}">{{art[0].name}}</a><br>
-                    <p>{{art[0].height}}"x{{art[0].width}}"</p>
-                    <p class="product-infos">
-                        <span>Price: {{art[0].price}}</span>
-                    </p>
-                    <ul class="product-buttons">
-                        <li>
-                            <a href="shoppingcart.html" class="main-btn">Buy Now</a>
-                        </li>
-                        <li>
-                            <a href="shoppingcart.html" class="main-btn">Add to Cart</a>
-                        </li>
-                    </ul>
-                </div> <!-- /.product-information -->
+
             </div> <!-- /.col-md-8 -->
-            <!--
+
             <div class="col-md-4 col-sm-8">
+              <div class="product-information">
+                  <h2>{{art[0].title}}</h2>
+                  <a href="/artists/{{art[0].artist_id}}" class="product-infos">{{art[0].name}}</a><br>
+                  <p>{{art[0].height}}"x{{art[0].width}}"</p>
+                  <p class="product-infos">
+                      <span>Price: ${{art[0].price}}</span>
+                  </p>
+                  <ul class="product-buttons">
+                      <li>
+                          <a href="shoppingcart.html" class="main-btn">Buy Now</a>
+                      </li>
+                      <li>
+                          <a href="shoppingcart.html" class="main-btn">Add to Cart</a>
+                      </li>
+                  </ul>
+              </div> <!-- /.product-information -->
+            </div>
+            <!--
                 <div class="product-item-2">
                     <div class="product-thumb">
                       <img src="img/Art/MarilynHenrion/PC67.jpg" alt="">

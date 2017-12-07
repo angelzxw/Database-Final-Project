@@ -164,7 +164,9 @@ function addBuy(customer_id, painting_id){
     });
 }
 //pool.end();
-//getAllArtists();
+// getAllArtists(function (err,data) {
+//     console.log(data);
+// });
 function getAllArtists(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -189,8 +191,12 @@ function getAllArtists(callback) {
             const query = "SELECT * FROM ARTIST";
             const values = [];
             client.query(query, values, (err, res) => {
-                if (shouldAbort(err)) return;
-                callback(err, err ? [] : res.rows);
+                 if (shouldAbort(err)) return;
+                 data = res.rows;
+                 data.sort(function (a,b) {
+                     return a.name.localeCompare(b.name);
+                 });
+                callback(err, err ? [] : data);
             })
         });
        
@@ -229,7 +235,9 @@ function getArtistByID(artist_id, callback) {
     });
 }
 
-//getAllArts();
+// getAllArts(function (err,data) {
+//     console.log(data);
+// });
 function getAllArts(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -254,7 +262,11 @@ function getAllArts(callback) {
             const values = [];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-               callback(err, res.rows);
+                data = res.rows;
+                data.sort(function (a,b) {
+                    return a.title.localeCompare(b.title);
+                });
+               callback(err, data);
             })
         });
     });
@@ -284,7 +296,7 @@ function getArtByArtistID(artist_id, callback) {
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                callback(err, res.rows);
+                callback(err, err ? [] : data);
             })
         });
     });

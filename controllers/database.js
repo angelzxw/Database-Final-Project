@@ -471,6 +471,101 @@ function getArtByKeyword(keyword,callback) {
     });
 }
 
+function addOrder(paintingID, customerID, callback){
+
+    pool.connect((err, client, done) => {
+        if(err) {
+            callback(err, paintingID);
+            throw err;
+        }
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in adding order', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)){
+                // console.log("Fail to begin the query.");
+                failIDs.append(paintingID);
+                return;
+            }
+            const insertOrder = "INSERT INTO Orders(customer_id, order_time) VALUES($1, current_timestamp) RETURNING order_number";
+            const insertValues = [customerID];
+
+            // Set the order
+            client.query(insertOrder, insertValues, (err, res) => {
+                if (shouldAbort(err)){
+                    // console.log("Fail to set the order");
+                    return;
+                }
+                orderID = res.rows[0]['order_number'];
+                // console.log("Successfully set the order");
+
+
+                const query = "SELECT * FROM Painting WHERE painting_id = $1";
+                const values = [paintingID];
+
+                // Check painting's availability
+                client.query(query, values, (err, res) => {
+                        if (shouldAbort(err) || res.rows.length < 1){
+                            console.log("Fail to get the valid painting entry.");
+                            return;
+                        }
+                        // If the painting is available, then we process the order, otherwise,
+                        // we add the painting ID to the fail ID list.
+                        if(res.rows[0]['available']){
+                            const price = res.rows[0]['price'];
+                            const insertItemQuery = "INSERT INTO OrderItem(order_number, painting_id, price) VALUES($1, $2, $3)";
+                            const insertItemValue = [orderID, paintingID, price];
+                            client.query(insertItemQuery, insertItemValue, (err, res)=>{
+                                if (shouldAbort(err)){
+                                    failIDs.append(paintingID);
+                                    return;
+                                }
+
+                                // console.log("Successfully insert the order item");
+                                const updateItemQuery = "UPDATE Painting SET available = $1 WHERE painting_id = $2";
+                                const updateItemValue =[false, paintingID];
+
+                                client.query(updateItemQuery, updateItemValue, (err, res) => {
+                                    if (shouldAbort(err)){
+                                        failIDs.append(paintingID);
+                                        return;
+                                    }
+
+                                    // console.log("Painting's availability Updated")
+
+                                    client.query('COMMIT', (err) => {
+                                        if (err) {
+                                            console.error('Error committing transaction: add order', err.stack);
+                                        }else{
+                                            callback(err, [paintingID, price]);
+                                        }
+                                        done();
+                                    })
+                                })
+                            });
+                        }else{
+                            console.log("Item not available");
+                            failIDs.append(paintingID);
+                        }
+                })
+            })
+        });
+    });
+}
+
+
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword,getNArts,getNArtists
+    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword,getNArts,getNArtists, addOrder
 };

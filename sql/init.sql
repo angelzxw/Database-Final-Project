@@ -18,10 +18,11 @@ CREATE TABLE Painting(
 	artist_id integer references Artist(artist_id), 
 	price float8, 
 	height float8, 
-	width float8,  
+	width float8,
 	img varchar(500), 
 	title varchar(100), 
-	type varchar(100)
+	type varchar(100),
+	available boolean default true
 );
 
 CREATE TABLE Customer(

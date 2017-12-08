@@ -1,5 +1,43 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{%if  %}
+<section class="cd-gallery">
+  <div class="container">
+    <div class="col-md-12">
+
+    	<div class="rowart carousel-holder">
+        <h3 class="description">Art</h3>
+        {% for art in allArts %}
+        <div class="w3-container w3-third col-md-4art">
+            <div class="product-image">
+                <img src="{{art.img}}" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
+            </div> <!-- /.product-image -->
+            <div class="product-information">
+                <h3><a href="/art/{{art.painting_id}}">{{art.title}}</a></h3>
+                <h4><a href="/artists/{{art.artist_id}}">{{art.name}}</a></h4>
+            </div> <!-- /.product-information -->
+        </div> <!-- /.w3-container w3-third -->
+        {% endfor %}
+
+        <h3 class="description">Artists</h3>
+        {% for art in allArts %}
+        <div class="w3-container w3-third col-md-4art">
+            <div class="product-image">
+                <img src="{{art.img}}" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">
+            </div> <!-- /.product-image -->
+            <div class="product-information">
+                <h3><a href="/art/{{art.painting_id}}">{{art.title}}</a></h3>
+                <h4><a href="/artists/{{art.artist_id}}">{{art.name}}</a></h4>
+            </div> <!-- /.product-information -->
+        </div> <!-- /.w3-container w3-third -->
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
 
 {% endblock %}

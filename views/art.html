@@ -8,7 +8,7 @@
 
     	<div class="rowart carousel-holder">
 
-        {% for art in allArts %}
+        {% for art in allArts|dictsort:"name" %}
         <div class="w3-container w3-third col-md-4art">
             <div class="product-image">
                 <img src="{{art.img}}" style="width:100%;cursor:zoom-in" onclick="onClick(this)" class="w3-hover-opacity">

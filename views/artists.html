@@ -6,11 +6,11 @@
     <div class="col-md-12">
     {%if allArtists %}
       <div class="row carousel-holder">
-        {% for artist in allArtists | dictsort:"name" %}
+        {% for artist in allArtists %}
         <div class="col-md-4 col-sm-6">
             <div class="panel panel-default artist-card">
                 <div class="artist-heading">
-                    <img src="">
+                    <img src="{{artist.img}}">
                 </div>
                 <div class="artist-figure">
                     <img class="img-responsive img-circle" src="{{artist.avator}}">

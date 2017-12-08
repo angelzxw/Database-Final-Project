@@ -1,7 +1,7 @@
 const express = require('express');
 const async = require('async');
 const router = express.Router();
-const artistModel = require("../models/database.js");
+const artistModel = require("../controllers/database.js");
 // router.get('/', artists);
 
 router.get('/', allArtists);

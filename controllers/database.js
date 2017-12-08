@@ -164,9 +164,9 @@ function addBuy(customer_id, painting_id){
     });
 }
 //pool.end();
-// getAllArtists(function (err,data) {
-//     console.log(data);
-// });
+getAllArtists(function (err,data) {
+    console.log(data);
+});
 function getAllArtists(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -188,7 +188,8 @@ function getAllArtists(callback) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT * FROM ARTIST";
+            //const query = "SELECT * FROM ARTIST";
+            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id";
             const values = [];
             client.query(query, values, (err, res) => {
                  if (shouldAbort(err)) return;
@@ -204,9 +205,9 @@ function getAllArtists(callback) {
 }
 
 
-getNArtists(1,5,function (err,data) {
-    console.log(data);
-});
+// getNArtists(1,5,function (err,data) {
+//     console.log(data);
+// });
 
 function getNArtists(page,n,callback) {
     pool.connect((err, client, done) => {
@@ -229,7 +230,7 @@ function getNArtists(page,n,callback) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT DISTINCT(a.artist_id),a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id LIMIT $1 OFFSET $2";
+            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id LIMIT $1 OFFSET $2";
             //const query = "SELECT * FROM ARTIST LIMIT $1 OFFSET $2";
             const values = [n,page*n];
             client.query(query, values, (err, res) => {

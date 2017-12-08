@@ -18,7 +18,7 @@
 
 .about-caption {
   color: #fff;
-  text-shadow: 1px 1px 2px black, 0 0 25px #2700fd, 0 0 5px #250d71;  
+  text-shadow: 1px 1px 2px black, 0 0 25px #2700fd, 0 0 5px #250d71;
   position: absolute;
   left: 0;
   top: 30%;
@@ -42,7 +42,7 @@
   text-align: center;
   font-family: 'Varela Round';
   font-size: 20px;
-  text-align: center; 
+  text-align: center;
   margin: auto;
 }
 
@@ -64,7 +64,7 @@
 
 .demo-video {
   margin: 30px 0;
-  padding-left: 10%;    
+  padding-left: 10%;
 }
 
 .demo-text {
@@ -82,7 +82,7 @@
 
 #click-to-sign-up:hover {
   color: #250d71;
-  text-shadow: 1px 1px 2px #fff, 0 0 25px #fff;  
+  text-shadow: 1px 1px 2px #fff, 0 0 25px #fff;
 }
 
 .bgimg-1, .bgimg-2, .bgimg-3 {
@@ -110,4 +110,3 @@
 .bgimg-3 {
   background-image: url("../img/Art/EdwardHenrion/9.jpg");
 }
-

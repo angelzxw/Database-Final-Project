@@ -16,6 +16,7 @@
                   <h2>{{art[0].title}}</h2>
                   <a href="/artists/{{art[0].artist_id}}" class="product-infos">{{art[0].name}}</a><br>
                   <p>{{art[0].height}}"x{{art[0].width}}"</p>
+                  <p>{{art[0].type}}</p>
                   <p class="product-infos">
                       <span>Price: ${{art[0].price}}</span>
                   </p>
@@ -58,7 +59,7 @@
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </div> <!-- /.content-section -->
-
+{%if relatedArts[0].title %}
 <div class="content-section">
     <div class="container">
         <div class="row">
@@ -66,23 +67,23 @@
                 <h2>You might be also interested in {{art[0].name}}'s...</h2>
             </div> <!-- /.section -->
         </div> <!-- /.row -->
-            <!-- pick 3 artworks from the same artist?-->
-            <div class="rowart">
-            {% for art in relatedArts %}
-            <div class="col-md-3 col-sm-6 col-md-4art">
-                <div class="product-item-vote">
-                    <div class="product-thumb">
-                        <img src="{{art.img}}" alt="">
-                    </div> <!-- /.product-thum -->
-                    <div class="product-content">
-                        <h5><a href="/art/{{art.painting_id}}">{{art.title}}</a></a></h5>
-                        <span class="tagline">{{art.name}}</span>
-                    </div> <!-- /.product-content -->
-                </div> <!-- /.product-item-vote -->
-            </div> <!-- /.col-md-3 -->
-            {% endfor %}
-          </div>
-        </div> <!-- /.row -->
-    </div> <!-- /.container -->
+
+        <div class="rowart">
+        {% for art in relatedArts %}
+        <div class="col-md-3 col-sm-6 col-md-4art">
+            <div class="product-item-vote">
+                <div class="product-thumb">
+                    <img src="{{art.img}}" alt="">
+                </div> <!-- /.product-thum -->
+                <div class="product-content">
+                    <h5><a href="/art/{{art.painting_id}}">{{art.title}}</a></a></h5>
+                    <span class="tagline">{{art.name}}</span>
+                </div> <!-- /.product-content -->
+            </div> <!-- /.product-item-vote -->
+        </div> <!-- /.col-md-3 -->
+        {% endfor %}
+      </div><!-- /.row -->
+  </div> <!-- /.container -->
 </div> <!-- /.content-section -->
+{% endif %}
 {% endblock %}

@@ -5,35 +5,31 @@
   <div class="container">
     <div class="col-md-12">
     {%if allArtists %}
-    <div class="row carousel-holder">
-    {% for artist in allArtists %}
-    <div class="col-md-4 col-sm-6">
-        <div class="panel panel-default artist-card">
-            <div class="artist-heading">
-                <img src="{{artis.avator}}">
-            </div>
-            <div class="artist-figure">
-                <img class="img-responsive img-circle" src="{{artist.avator}}">
-            </div>
+      <div class="row carousel-holder">
+        {% for artist in allArtists %}
+        <div class="col-md-4 col-sm-6">
+            <div class="panel panel-default artist-card">
+                <div class="artist-heading">
+                    <img src="">
+                </div>
+                <div class="artist-figure">
+                    <img class="img-responsive img-circle" src="{{artist.avator}}">
+                </div>
+                <div class="artist-body text-center">
+                    <h4 class="artist-header">
+                        <a href="/artists/{{artist.artist_id}}">{{artist.name}}</a><br>
+                        <a href="/artists/{{artist.artist_id}}#artwork"><i class="fa fa-user-circle"></i></a>
+                        <a href="/artists/{{artist.artist_id}}"><i class="fa fa-image"></i></a>
+                    </h4>
+                    <div class="artist-intro">{{artist.self_intro}}</div>
+                </div>
 
-
-            <div class="artist-body text-center">
-                <h4 class="artist-header">
-                    <a href="/artists/{{artist.artist_id}}">{{artist[name]}}</a><br>
-                    <a href="/artists/{{artist.artist_id}}/about-artist"><i class="fa fa-user-circle"></i></a>
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href="/artists/{{artist.artist_id}}/artwork"><i class="fa fa-image"></i></a>
-                </h4>
-            </div>
-            <div class="artist-intro">
-            {{artist.self_intro}}
             </div>
         </div>
+        {% endfor %}
+      </div>
     </div>
-    {% endfor %}
-    </div>
-    </div>
-    </div>
+  </div>
 </section>
 {% endif %}
 {% endblock %}

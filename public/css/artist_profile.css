@@ -209,44 +209,52 @@ section.success{
 }
 
 .artist-bio {
-  text-align: center;
-  margin: 0 20px;
-  height: 300px;
-  color: #222;
+  text-align: left;
+  color: black;
+  width: 1100px;
   font-family: 'Varela Round';
   font-size: 20px;
+  background-color: #fff;
+  margin: 40px 200px 40px 100px;
+  padding-bottom: 30px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 10px solid #fff;
+  background-size: cover !important;
+  -webkit-transition: 0.2s cubic-bezier(0.5, 0, 0.2, 1);
+  transition: 0.2s cubic-bezier(0.5, 0, 0.2, 1);
 }
 
 #artwork {
-  padding-top: 500pt; 
+  padding-top: 500pt;
   margin-top: -500pt;
 }
 
 .card{
-  box-shadow:2px 2px 20px rgba(0,0,0,0.3); 
-  border:none; 
+  box-shadow:2px 2px 20px rgba(0,0,0,0.3);
+  border:none;
   margin-bottom:30px;
 }
 .card-01 .card-body{
-  position:relative; 
+  position:relative;
   padding-top:40px;
 }
 .card-01 .badge-box{
-  position:absolute; top:-20px; 
-  left:50%; 
-  width:100px; 
+  position:absolute; top:-20px;
+  left:50%;
+  width:100px;
   height:100px;
-  margin-left:-50px; 
+  margin-left:-50px;
   text-align:center;
 }
 .card-01 .badge-box i{
-  background:#41307c; 
-  color:#fff; 
-  border-radius:50%;  
-  width:50px; 
-  height:50px; 
-  line-height:50px; 
-  text-align:center; 
+  background:#41307c;
+  color:#fff;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  line-height:50px;
+  text-align:center;
   font-size:20px;
 }
 .card-title, .card-text {

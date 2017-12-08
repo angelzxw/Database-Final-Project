@@ -1,36 +1,69 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3 class="description" style="text-align:center">Our Mission</h3>
-  <p style="text-align:center">Create a better event management service!</p>
-  <br>
-  <h3 class="description" style="text-align:center">The Team</h3>
-  <div class="row">
-    <div class="profile">
-        <div class="img-box">
-            <img id="cloudy-herd-headshot" height="275" width="275" src="">
-        </div>
-        <h1><span id="cloudy-herd-name">Kai Yang</span></h1>
-    </div>
+<section class="team">
+    <div class="container"><div class="row">
+        <div class="col-md-10 col-md-offset-1"><div class="col-lg-12">
 
-    <div class="profile">
-        <div class="img-box">
-            <img id="fair-emu-headshot" height="275" width="275" src="">
-        </div>
-        <h1><span id="fair-emu-name">Zheng Qin</span></h1>
-    </div>
-    <div class="profile">
-        <div class="img-box">
-            <img id="cautious-flamingo-headshot" height="275" width="275" src="https://scontent.fijd1-1.fna.fbcdn.net/v/t1.0-9/20376183_1508572845866512_8172165978936505015_n.jpg?oh=701e8035c7c40363ed39994e5a80b2b1&oe=5AA7FADD">
-        </div>
-        <h1><span id="cautious-flamingo-name">Angel Zhang</span></h1>
-    </div>
+            <h3 class="description">THE TEAM</h3>
+            <div class="row pt-md" align="middle">
 
-    <div class="profile">
-        <div class="img-box">
-            <img id="healthy-gazelle-headshot" height="275" width="275" src="">
+              <div class=" col-md-4 col-sm-6 col-xs-12 profile">
+                  <div class="img-box">
+                      <img src="/img/Team/KY.jpg" class="img-responsive" style="background-color: rgba(0, 0, 0, 0.25); zoom:3">
+                  </div>
+                  <h1>Kai Yang</h1>
+                  <h2>Backend Software Engineer | Yale Unicersity</h2>
+              </div>
+              
+              <div class=" col-md-4 col-sm-6 col-xs-12 profile">
+                  <div class="img-box">
+                      <img src="http://www.clarkegroup.co.uk/wp-content/uploads/2014/10/placeholder-employee.jpg" class="img-responsive" style="background-color: rgba(0, 0, 0, 0.25); zoom:3">
+                  </div>
+                  <h1>Zheng Qin</h1>
+                  <h2>Frontend Software Engineer | Yale Unicersity</h2>
+              </div>
+            </div>
+              <div class="row pt-md">
+                <div class=" col-md-4 col-sm-6 col-xs-12 profile">
+                    <div class="img-box">
+                        <img src="/img/Team/AZ.jpg" class="img-responsive" style="background-color: rgba(0, 0, 0, 0.25); zoom:3">
+                    </div>
+                    <h1>Angel Zhang</h1>
+                    <h2>Frontend Software Engineer | Yale Unicersity</h2>
+                </div>
+
+                <div class=" col-md-4 col-sm-6 col-xs-12 profile">
+                    <div class="img-box">
+                        <img src="/img/Team/ZZ.jpg" class="img-responsive" style="background-color: rgba(0, 0, 0, 0.25); zoom:3">
+                    </div>
+                    <h1>Zilin Zhang</h1>
+                    <h2>Backend Software Engineer | Yale Unicersity</h2>
+                </div>
+            </div>
+
+            &ensp;&ensp;&ensp;&ensp;&ensp;
+
+            <h3 class="description">THE ADVISORS</h3>
+            <div class="row pt-md">
+
+                <div class="col-md-4 col-sm-6 col-xs-12 profile">
+                    <div class="img-box">
+                        <img src="http://codex.cs.yale.edu/avi/home-page/images/avi.jpg" class="img-responsive">
+                    </div>
+                    <h1>Avi Silberschatz</h1>
+                    <h2>Professor | Yale University</h2>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12 profile">
+                    <div class="img-box">
+                       <img src="http://resistingreality.com/wp-content/uploads/2016/12/default-female.jpg" class="img-responsive">
+                    </div>
+                    <h1>Nicole Salomons</h1>
+                    <h2>Teaching Assistant | Yale University</h2>
+                </div>
         </div>
-        <h1><span id="healthy-gazelle-name">Zilin Zhang</span></h1>
-    </div>
-  </div>
+    </div></div>
+  </div></div>
+</section>
 {% endblock %}

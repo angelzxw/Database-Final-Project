@@ -56,6 +56,8 @@ $(function() {
                 }
                 return false;
                 break;
+			case "search-form":
+				return true;
             default:
                 return false;
         }

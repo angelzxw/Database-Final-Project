@@ -51,12 +51,14 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
             <li id = "searchbar">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
-                        <input type="text" class="search-query form-control" placeholder="Search or type keywords" />
+                      <form action="/search" method="post" id="search-form">
+                        <input type="text" class="search-query form-control" name="searchText" placeholder="Search or type keywords" />
                         <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button">
+                            <button class="btn btn-danger" type="submit">
                                 <span class=" glyphicon glyphicon-search"></span>
                             </button>
                         </span>
+                      </form>
                     </div>
                 </div>
             </li>
@@ -73,7 +75,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     </nav>
     <section style='padding-top:10px;font:bold  44px arial;color:#68D800;'></section>
     <!--./Navigation-->
-    {% block body %}
+     {% block body %}
     {% endblock %}
     <div class="container">
 
@@ -201,26 +203,57 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     <script>window.jQuery || document.write('<script src="js/product/vendor/jquery-1.10.1.min.js"><\/script>')</script>
     <script src="/js/product/jquery.easing-1.3.js"></script>
 
+    <script src="js/jquery.mixitup.min.js"></script>
+
+    <script src="/js/product/pagination.js"></script>
+    <script src="/js/product/pagination.min.js"></script>
+
+
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/product/bootstrap.js"></script>
 
     <!-- Custom JavaScript -->
-    <script src="/js/main.js"></script>
+    {% if not isContactForm %}
+        <script src="/js/main.js"></script>
+    {% endif %}
     <script src="/js/product/plugins.js"></script>
     <script src="/js/product/main.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/product/vendor/modernizr-2.6.2.min.js"></script>
 
-   {% if anchor %}
-      <script>
-          window.onload = function (event) {
-                window.location.hash = "#{{anchor}}";
-            };
-      </script>
-   {% endif %}
+    <script>
+    $(window).load(function() {
+    var hash = location.hash;
+    var hashPieces = hash.split('?');
+    var activeTab = $('[href=' + hashPieces[0] + ']');
 
+    activeTab && activeTab.tab('show');
+
+    $(document.body).on("click", "button[data-toggle]", function(event) {
+      location.hash = this.getAttribute("href");
+    });
+    });
+</script>
+<script>
+  // $('#demo').pagination({
+  // dataSource: <%- JSON.stringfy( allArtists) %>,
+  // pageSize: 20,
+  // formatResult: function(data) {
+  //     var result = [];
+  //     for (var i = 0, len = data.length; i < len; i++) {
+  //         result.push(data[i] + ' - good guys');
+  //     }
+  //     return result;
+  // },
+  // callback: function(data, pagination) {
+  //     // template method of yourself
+  //     var html = template(data);
+  //     dataContainer.html(html);
+  // }
+  // });
+</script>
 
 </body>
 </html>

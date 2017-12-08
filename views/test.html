@@ -1,16 +1,21 @@
 {% extends "layout.html" %}
 
-{% block body %}
+<!-- {% block body %}
 <section class="cd-gallery">
   <div class="container">
     <div class="col-md-12">
+
+    <div id="data-container"></div>
+    <div id="pagination-container"></div>
+
     {%if allArtists %}
       <div class="row carousel-holder">
+
         {% for artist in allArtists %}
         <div class="col-md-4 col-sm-6">
             <div class="panel panel-default artist-card">
                 <div class="artist-heading">
-                    <img src="{{artist.img}}">
+                    <img src="">
                 </div>
                 <div class="artist-figure">
                     <img class="img-responsive img-circle" src="{{artist.avator}}">
@@ -28,9 +33,11 @@
         </div>
         {% endfor %}
       </div>
-    {% endif %}
     </div>
   </div>
 </section>
+{% endif %} -->
+{{JSON.stringfy( allArtists)}}
+
 
 {% endblock %}

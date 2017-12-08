@@ -19,7 +19,7 @@ function searchArt(req,res) {
             title: 'All Arts',
             allArts: data,
         };
-        // console.log(allArts);
+        console.log(data);
         res.render('art', context);
     });
 }

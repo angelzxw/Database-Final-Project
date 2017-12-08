@@ -377,7 +377,7 @@ function getArtByArtistID(artist_id, callback) {
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                callback(err, err ? [] : data);
+                callback(err, err ? [] : res);
             })
         });
     });

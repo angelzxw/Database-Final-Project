@@ -11,6 +11,8 @@ h3.description{
 }
 .profile{
 	margin-top: 25px;
+  margin-right: 100px;
+  margin-left: 25px;
 }
 .profile h1{
 	font-weight: normal;

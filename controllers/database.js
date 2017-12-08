@@ -203,6 +203,49 @@ function getAllArtists(callback) {
     });
 }
 
+
+getNArtists(1,5,function (err,data) {
+    console.log(data);
+});
+
+function getNArtists(page,n,callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArtists', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT DISTINCT(a.artist_id),a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id LIMIT $1 OFFSET $2";
+            //const query = "SELECT * FROM ARTIST LIMIT $1 OFFSET $2";
+            const values = [n,page*n];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                data = res.rows;
+                console.log(data);
+                data.sort(function (a,b) {
+                    return a.name.localeCompare(b.name);
+                });
+                callback(err, err ? [] : data);
+            })
+        });
+
+    });
+}
+
 //getArtsByID(9208);
 
 function getArtistByID(artist_id, callback) {
@@ -267,6 +310,43 @@ function getAllArts(callback) {
                     return a.title.localeCompare(b.title);
                 });
                callback(err, data);
+            })
+        });
+    });
+}
+
+// getNArts(1,5,function (err,data) {
+//    console.log(data);
+// });
+function getNArts(page,n,callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArts', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id LIMIT $1 OFFSET $2";
+            const values = [n,n*page];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                data = res.rows;
+                data.sort(function (a,b) {
+                    return a.title.localeCompare(b.title);
+                });
+                callback(err, data);
             })
         });
     });
@@ -390,5 +470,5 @@ function getArtByKeyword(keyword,callback) {
     });
 }
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword
+    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword,getNArts,getNArtists
 };

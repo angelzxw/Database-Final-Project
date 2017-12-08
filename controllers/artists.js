@@ -5,19 +5,19 @@ const artistModel = require("../models/database.js");
 // router.get('/', artists);
 
 router.get('/', allArtists);
-router.get('/:id/:anchor', artistDetail);
+router.get('/:id', artistDetail);
 
 function allArtists(req, res) {
-  
+
   artistModel.getAllArtists((err, allArtists) => {
     if(err) {
       console.log(err.stack);
       res.redirect('/');
       return;
     }
-    
+
     // async.map(allArtists, (artist, callback) => {
-      
+
     //   artistModel.getNArtByArtistID(1, artist.artist_id, callback);
     // }, function(getOneArtFromEachErr, getOneArtFromEachResult) {
     //   // results is now an array of stats for each file
@@ -33,20 +33,20 @@ function allArtists(req, res) {
     //     allArtists: allArtists,
     //   };
     // });
-    
-    
-    
+
+
+
     const context = {
         title: 'All Artists',
         allArtists: allArtists,
     };
     console.log(allArtists);
     res.render('artists', context);
-    
+
   });
-  
-  
-  
+
+
+
 }
 
 function artistDetail(req, res) {
@@ -57,7 +57,7 @@ function artistDetail(req, res) {
         artistModel.getArtistByID(artist_id, callback);
       },
       function(callback) {
-        artistModel.getArtByArtistID(artist_id, callback); 
+        artistModel.getArtByArtistID(artist_id, callback);
       },
   ],
   // callback and the reults is an array combining results from the function in array
@@ -76,7 +76,7 @@ function artistDetail(req, res) {
     };
 
     res.render('artist_detail', context);
-    
+
   });
 
 }

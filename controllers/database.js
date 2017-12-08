@@ -377,7 +377,7 @@ function getArtByArtistID(artist_id, callback) {
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                callback(err, err ? [] : data);
+                callback(err, err ? [] : res);
             })
         });
     });
@@ -461,7 +461,7 @@ function getArtByKeyword(keyword,callback) {
 
         client.query('BEGIN', (err) => {
             // if (shouldAbort(err)) return;
-            const query = `SELECT p.painting_id,p.artist_id,p.price,p.height,p.width,p.img,p.title,p.type FROM Painting as p join Artist as a on p.artist_id = a.artist_id WHERE p.title ~* '.*${keyword}.*' or a.name ~* '.*${keyword}.*'`;
+            const query = `SELECT p.painting_id,p.artist_id,p.price,p.height,p.width,p.img,p.title,p.type,a.name FROM Painting as p join Artist as a on p.artist_id = a.artist_id WHERE p.title ~* '.*${keyword}.*' or a.name ~* '.*${keyword}.*'`;
             const values = [];
             client.query(query, values, (err, res) => {
                 //console.log(err);

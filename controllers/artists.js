@@ -33,6 +33,7 @@ function allArtists(req, res) {
     //     allArtists: allArtists,
     //   };
     // });
+    console.log(allArtists);
     const context = {
         title: 'All Artists',
         allArtists: allArtists,

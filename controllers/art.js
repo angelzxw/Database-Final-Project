@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const artModel = require("../models/database.js");
+const artModel = require("../controllers/database.js");
 
 router.get('/', allArt);
 router.get('/:id', artDetail);
@@ -19,7 +19,7 @@ function allArt(req, res) {
     };
     // console.log(allArts);
     res.render('art', context);
-    
+
   });
 }
 
@@ -45,9 +45,9 @@ function artDetail(req, res) {
         relatedArts: relatedArts,
       };
     res.render('art_detail', context);
-    
+
     });
-    
+
   });
 }
 

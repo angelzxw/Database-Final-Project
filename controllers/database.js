@@ -164,9 +164,9 @@ function addBuy(customer_id, painting_id){
     });
 }
 //pool.end();
-getAllArtists(function (err,data) {
-    console.log(data);
-});
+// getAllArtists(function (err,data) {
+//     console.log(data);
+// });
 function getAllArtists(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -236,7 +236,7 @@ function getNArtists(page,n,callback) {
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
                 data = res.rows;
-                console.log(data);
+                //console.log(data);
                 data.sort(function (a,b) {
                     return a.name.localeCompare(b.name);
                 });
@@ -470,6 +470,7 @@ function getArtByKeyword(keyword,callback) {
         });
     });
 }
+
 module.exports = {
     router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword,getNArts,getNArtists
 };

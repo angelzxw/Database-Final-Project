@@ -1,0 +1,4 @@
+module.exports = {
+    user: "cs437artsify@gmail.com",
+    pass: "cs437password",
+}

@@ -2,73 +2,82 @@
 
 {% block body %}
 <section id="artist-profile" class="container">
-
-        <header id="page-top">
-            <div class="container"><div class="col-lg-12">
-
+    <header id="page-top">
+            <div class="container">
+              <div class="col-lg-12">
                 <div class="rela-block profile-card">
-
-                    <div class="profile-pic"
-                        style="
-                            background: url('{{artist[0].avator}}') no-repeat;
-                            background-position: -5px -20px;"
-                        id="profile_pic">
-                    </div>
-                    <div class="rela-block profile-name-container">
-                        <div class="rela-block user-name" id="user_name">{{artist.name}}</div>
-                        <div class="rela-block user-desc" id="user_description">
-                          <a class="rela-block user-desc" href="https://www.edwardhenrion.com/">Artist</a>
-                        </div>
-                    </div>
-                    <div class="social">
-                        <ul>
-                        </ul>
-                    </div>
-
-                    <div class="artist-tabs btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default artist-tab" href="#artwork" data-toggle="tab">
-                                <i class="fa fa-image"></i>
-                                <div class="hidden-xs">Artwork</div>
-                            </button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default artist-tab" href="#about-artist" data-toggle="tab">
-                                <i class="fa fa-user-circle"></i>
-                                <div class="hidden-xs">About the Artist</div>
-                            </button>
-                        </div>
-                    </div>
-
+                <div class="profile-pic"
+                    style="
+                        background: url('{{artist[0].avator}}') no-repeat;
+                        background-position: -5px -20px;"
+                    id="profile_pic">
                 </div>
 
-                <div class="tab-content">
-                    <!--Artwork -->
-                    {%if arts %}
-
-                    <div class="tab-pane fade in active" id="artwork">
-                        <div class="rela-block content">
-                            {% for art in arts %}
-                                    <div class="rela-inline image" style="background: url('{{art.img}}') center center no-repeat;"
-                                    href="/arts/{{art.painting_id}}">
-                                    </div>
-                            {% endfor %}
-                        </div>
+                <div class="rela-block profile-name-container">
+                    <div class="rela-block user-name" id="user_name">{{artist[0].name}}</div>
+                    <div class="rela-block user-desc" id="user_description">
+                      <a class="rela-block user-desc" href="https://www.edwardhenrion.com/">Artist</a>
                     </div>
-                   {% endif %}
+                </div>
 
-                    <!-- -->
-                    <div class="tab-pane fade in active" id="about-artist">
+                <div class="artist-tabs btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default artist-tab" href="#about-artist" data-toggle="tab">
+                          <i class="fa fa-user-circle"></i>
+                          <div class="hidden-xs">About the Artist</div>
+                      </button>
+                  </div>
+                  <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default artist-tab" href="#artwork" data-toggle="tab">
+                          <i class="fa fa-image"></i>
+                          <div class="hidden-xs">Artwork</div>
+                      </button>
+                  </div>
 
-                      <div class="rela-block content">
-                        <h3>
-                              {{artist[0].self_intro}}
-                          </h3>
+                </div>
+              </div>
+
+              <div class="tab-content">
+                  <!--Artist Bio -->
+                  <div class="tab-pane fade in active" id="about-artist">
+                      <div class="rela-block-content content">
+                          <div class="artist-bio">
+                            <h5>Biography</h5>
+                            <p>{{artist[0].self_intro}}</p>
+                          </div>
                       </div>
-                    </div>
-                </div>
-            </div></div>
+                  </div>
+                  <!--Artwork -->
+                  {%if arts %}
+                  <div class="tab-pane fade in" id="artwork">
+                      <div class="rela-block content">
+                          {% for art in arts %}
+                            <div class="rela-inline image" style="background: url('{{art.img}}') center center no-repeat;"
+                            onclick="window.location='/art/{{art.painting_id}}'">
+                            </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+                 {% endif %}
+               </div><!-- .tab-content-->
+
+            </div>
+          </div><!--.container-->
         </header>
     </section>
     <!-- /.Page Content -->
+    <!-- Custom Artist Profile JavaScript -->
+    <script>
+        $(window).load(function() {
+        var hash = location.hash;
+        var hashPieces = hash.split('?');
+        var activeTab = $('[href=' + hashPieces[0] + ']');
+
+        activeTab && activeTab.tab('show');
+
+        $(document.body).on("click", "button[data-toggle]", function(event) {
+          location.hash = this.getAttribute("href");
+        });
+        });
+    </script>
 {% endblock %}

@@ -86,7 +86,7 @@ li.dropdown {
 }
 
 @media screen and (max-width:767px){
-    
+
 
 }
 
@@ -95,7 +95,7 @@ body{background:white;}
 header{position:relative;width:100%;background:#9d9d9d;}
 .logo{position:relative;z-index:123;padding:10px;font:18px;font-family: 'Varela Round';color:#9d9d9d;float:left;width:15%}
 .logo a{color:#9d9d9d;}
-nav{position:absolute;width:100%;margin:0 auto;top:0; margin-top: -56px; z-index:5;}
+nav{position:absolute;width:100%;margin:0 auto;top:0; margin-top: -70px; z-index:5;}
 #cssmenu > ul {
     margin-bottom: -20px !important;
 }
@@ -117,7 +117,7 @@ nav{position:absolute;width:100%;margin:0 auto;top:0; margin-top: -56px; z-index
 /* Background when hovering over submenus*/
 #cssmenu ul ul li{height:0;-webkit-transition:all .25s ease;-ms-transition:all .25s ease;background:#2b182d;transition:all .25s ease}
 #cssmenu ul ul li:hover{}
-#cssmenu li:hover > ul{left:auto}
+#cssmenu li:hover > ul{margin-top: 0%;left:-50px;}
 #cssmenu li:hover > ul > li{height:35px}
 #cssmenu ul ul ul{margin-left:100%;top:0}
 #cssmenu ul ul li a{border-bottom:1px solid rgba(150,150,150,0.15);padding:11px 15px;width:170px;font-size:12px;text-decoration:none;color:#ddd;font-weight:400;}

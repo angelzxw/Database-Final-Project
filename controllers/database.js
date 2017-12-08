@@ -189,7 +189,7 @@ function getAllArtists(callback) {
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
             //const query = "SELECT * FROM ARTIST";
-            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id";
+            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id LIMIT 50";
             const values = [];
             client.query(query, values, (err, res) => {
                  if (shouldAbort(err)) return;
@@ -302,7 +302,7 @@ function getAllArts(callback) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id";
+            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id LIMIT 50";
             const values = [];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
@@ -461,7 +461,7 @@ function getArtByKeyword(keyword,callback) {
 
         client.query('BEGIN', (err) => {
             // if (shouldAbort(err)) return;
-            const query = `SELECT p.painting_id,p.artist_id,p.price,p.height,p.width,p.img,p.title,p.type FROM Painting as p join Artist as a on p.artist_id = a.artist_id WHERE p.title ~* '.*${keyword}.*' or a.name ~* '.*${keyword}.*'`;
+            const query = `SELECT p.painting_id,p.artist_id,p.price,p.height,p.width,p.img,p.title,p.type,a.name FROM Painting as p join Artist as a on p.artist_id = a.artist_id WHERE p.title ~* '.*${keyword}.*' or a.name ~* '.*${keyword}.*'`;
             const values = [];
             client.query(query, values, (err, res) => {
                 //console.log(err);

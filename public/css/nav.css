@@ -45,6 +45,8 @@
     padding-right: 4px \9;
     padding-left: 3px;
     padding-left: 4px \9;
+    display: inline-block;
+    width: 95%;
     /* IE7-8 doesn't have border-radius, so don't indent the padding */
 
     margin-bottom: 0;
@@ -52,10 +54,13 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-
+#search-button{
+    display: inline-block;
+}
 #custom-search-input button {
     border: 0;
     background: none;
+    display: inline-block;
 }
 
 li.dropdown {

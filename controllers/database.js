@@ -472,8 +472,8 @@ function getArtByKeyword(keyword,callback) {
     });
 }
 
-function addOrder(paintingID, customerID, callback){
-
+function addOrder(paintingID, callback){
+    var customerID = 1;
     pool.connect((err, client, done) => {
         if(err) {
             callback(err, paintingID);
@@ -488,7 +488,7 @@ function addOrder(paintingID, customerID, callback){
                         console.error('Error rolling back client', err.stack);
                     }
                     // release the client back to the pool
-                    done();
+                    callback(err);
                 })
             }
             return !!err;

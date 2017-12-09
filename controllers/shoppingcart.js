@@ -19,7 +19,7 @@ function checkout(req, res) {
     console.log(req.body);
     console.log(req.body.painting_id);
     
-    async.map( req.body.painting_id, orderModel.addBuy, (err) => {
+    async.map( req.body.painting_id, orderModel.addOrder, (err) => {
         if(err) {
             console.log(err.stack);
             res.redirect('/');

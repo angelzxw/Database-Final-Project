@@ -72,8 +72,8 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
             <li><a href="/shoppingcart">
                 <span class="glyphicon glyphicon-shopping-cart"></span>Cart
             </a></li>
-            <li><a href="#" data-toggle="modal" data-target="#login-modal" id="login-btn">Log In</a></li>
-            <li><a href="#" id="register-btn">Sign Up</a></li>
+            <!-- <li><a href="#" data-toggle="modal" data-target="#login-modal" id="login-btn">Log In</a></li>
+            <li><a href="#" id="register-btn">Sign Up</a></li> -->
         </ul>
     </nav>
     <section style='padding-top:10px;font:bold  44px arial;color:#68D800;'></section>
@@ -100,7 +100,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     <!-- /.container -->
 
     <!-- BEGIN # MODAL LOGIN -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <!-- <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" align="center">
@@ -108,13 +108,13 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                     <p class="logo-text-lg">Artsify</p>
-                </div>
+                </div> -->
 
                 <!-- Begin # DIV Form -->
-                <div id="div-forms">
+                <!-- <div id="div-forms"> -->
 
                     <!-- Begin # Login Form -->
-                    <form id="login-form">
+                    <!-- <form id="login-form">
                         <div class="modal-body">
                             <div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -137,11 +137,11 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                                 <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                     <!-- End # Login Form -->
 
                     <!-- Begin | Lost Password Form -->
-                    <form id="lost-form" style="display:none;">
+                    <!-- <form id="lost-form" style="display:none;">
                         <div class="modal-body">
                             <div id="div-lost-msg">
                                 <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -158,11 +158,11 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                                 <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                     <!-- End | Lost Password Form -->
 
                     <!-- Begin | Register Form -->
-                    <form id="register-form" style="display:none;">
+                    <!-- <form id="register-form" style="display:none;">
                         <div class="modal-body">
                             <div id="div-register-msg">
                                 <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -182,14 +182,14 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                             </div>
                         </div>
                     </form>
-                    <!-- End | Register Form -->
+
 
                 </div>
-                <!-- End # DIV Form -->
+
 
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- END # MODAL LOGIN -->
 
     <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
@@ -268,7 +268,7 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
         var price = $(".price").html().substring(1);
         var description = $(".description").html();
         var img = $(".painting_img").attr('src');
-        
+
         var m = {
             id: painting_id,
             name: name,
@@ -277,13 +277,13 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
             img: img,
         }
 
-        
+
         if (shoppingcart == undefined) {
             shoppingcart = [];
         }
-        
+
         if (shoppingcart.indexOf(painting_id) == -1) {
-            shoppingcart.push(m); 
+            shoppingcart.push(m);
         }
 
         localStorage['shoppingcart'] = JSON.stringify(shoppingcart);

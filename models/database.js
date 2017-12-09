@@ -164,7 +164,9 @@ function addBuy(customer_id, painting_id){
     });
 }
 //pool.end();
-//getAllArtists();
+// getAllArtists(function (err,data) {
+//     console.log(data);
+// });
 function getAllArtists(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -183,17 +185,65 @@ function getAllArtists(callback) {
             return !!err;
         };
 
-        
+
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-            const query = "SELECT * FROM ARTIST";
+            //const query = "SELECT * FROM ARTIST";
+            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.avator,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id";
             const values = [];
             client.query(query, values, (err, res) => {
-                if (shouldAbort(err)) return;
-                callback(err, err ? [] : res.rows);
+                 if (shouldAbort(err)) return;
+                 data = res.rows;
+                 data.sort(function (a,b) {
+                     return a.name.localeCompare(b.name);
+                 });
+                callback(err, err ? [] : data);
             })
         });
-       
+
+    });
+}
+
+
+// getNArtists(1,5,function (err,data) {
+//     console.log(data);
+// });
+
+function getNArtists(page,n,callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArtists', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT distinct on(a.artist_id) a.artist_id,a.name,a.self_intro,p.img FROM ARTIST as a join Painting as p on a.artist_id = p.artist_id LIMIT $1 OFFSET $2";
+            //const query = "SELECT * FROM ARTIST LIMIT $1 OFFSET $2";
+            const values = [n,page*n];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                data = res.rows;
+                //console.log(data);
+                data.sort(function (a,b) {
+                    return a.name.localeCompare(b.name);
+                });
+                callback(err, err ? [] : data);
+            })
+        });
+
     });
 }
 
@@ -229,7 +279,9 @@ function getArtistByID(artist_id, callback) {
     });
 }
 
-//getAllArts();
+// getAllArts(function (err,data) {
+//     console.log(data);
+// });
 function getAllArts(callback) {
     pool.connect((err, client, done) => {
         if(err) throw err;
@@ -254,7 +306,48 @@ function getAllArts(callback) {
             const values = [];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-               callback(err, res.rows);
+                data = res.rows;
+                data.sort(function (a,b) {
+                    return a.title.localeCompare(b.title);
+                });
+               callback(err, data);
+            })
+        });
+    });
+}
+
+// getNArts(1,5,function (err,data) {
+//    console.log(data);
+// });
+function getNArts(page,n,callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        const shouldAbort = (err) => {
+            if (err) {
+                console.error('Error in getAllArts', err.stack);
+                client.query('ROLLBACK', (err) => {
+                    if (err) {
+                        console.error('Error rolling back client', err.stack);
+                    }
+                    // release the client back to the pool
+                    done();
+                })
+            }
+            return !!err;
+        };
+
+        client.query('BEGIN', (err) => {
+            if (shouldAbort(err)) return;
+            const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id LIMIT $1 OFFSET $2";
+            const values = [n,n*page];
+            client.query(query, values, (err, res) => {
+                if (shouldAbort(err)) return;
+                data = res.rows;
+                data.sort(function (a,b) {
+                    return a.title.localeCompare(b.title);
+                });
+                callback(err, data);
             })
         });
     });
@@ -284,7 +377,7 @@ function getArtByArtistID(artist_id, callback) {
             const values = [artist_id];
             client.query(query, values, (err, res) => {
                 if (shouldAbort(err)) return;
-                callback(err, res.rows);
+                callback(err, err ? [] : res);
             })
         });
     });
@@ -310,7 +403,7 @@ function getArtByID(painting_id, callback) {
 
         client.query('BEGIN', (err) => {
             if (shouldAbort(err)) return;
-         
+
             const query = "SELECT * FROM Painting as p join ARTIST as a on p.artist_id = a.artist_id WHERE p.painting_id = $1";
             const values = [painting_id];
             client.query(query, values, (err, res) => {
@@ -357,6 +450,27 @@ function getNArtByArtistID(n,artist_id, exclude_id, callback) {
     });
 }
 
+
+// getArtByKeyword("Me",function (err,data) {
+//     console.log(data);
+// });
+
+function getArtByKeyword(keyword,callback) {
+    pool.connect((err, client, done) => {
+        if(err) throw err;
+
+        client.query('BEGIN', (err) => {
+            // if (shouldAbort(err)) return;
+            const query = `SELECT p.painting_id,p.artist_id,p.price,p.height,p.width,p.img,p.title,p.type,a.name FROM Painting as p join Artist as a on p.artist_id = a.artist_id WHERE p.title ~* '.*${keyword}.*' or a.name ~* '.*${keyword}.*'`;
+            const values = [];
+            client.query(query, values, (err, res) => {
+                //console.log(err);
+                callback(err, err?[]:res.rows);
+            })
+        });
+    });
+}
+
 module.exports = {
-    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID
+    router,addArtist,addPainting,addCustomer,addBuy,getAllArtists,getArtistByID,getAllArts,getArtByID,getArtByArtistID,getNArtByArtistID,getArtByKeyword,getNArts,getNArtists
 };

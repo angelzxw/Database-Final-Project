@@ -47,7 +47,6 @@ app.use('/artists', require('./controllers/artists.js'));
 app.use('/items', require('./controllers/items.js'));
 app.use('/account', require('./controllers/account.js'));
 app.use('/contact', require('./controllers/contact.js'));
-app.use('/test', require('./controllers/test.js'));
 app.use("/search",require("./controllers/search.js"));
 app.use("/shoppingcart", require("./controllers/shoppingcart.js"));
 

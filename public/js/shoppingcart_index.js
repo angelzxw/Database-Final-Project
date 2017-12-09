@@ -16,36 +16,14 @@ String.prototype.strip$ = function () {
 var app = {
 
   shipping : 100.00,
-  products : [
-      {
-        "name" : "Patchwork City 68",
-        "price" : "6000.00",
-        "img" : "img/Art/MarilynHenrion/PC68.jpg",
-        "desc" : "Mixed media linen collage on stretched canvas, framed."
-      },
-      {
-        "name" : "Abstract VIII",
-        "price" : "1000.00",
-        "img" : "img/Art/MarkRichardson/8.jpg",
-        "desc" : "Rotor motion on plywood"
-      },
-      {
-        "name" : "Agave In Jardin De Majorelle, Marrakesh",
-        "price" : "2500.00",
-        "img" : "img/Art/Artwork/AnnHosfeld/Agave.jpg",
-        "desc" : "Oil on wood panel"
-      },
-      {
-        "name" : "We Shall Not Forget",
-        "img" : "img/Art/EdwardHenrion/4.jpg",
-        "price" : "301.18",
-        "desc" : "Ink on paper, acrylic print"
-      }
-    ],
+  // products : [{"id":"47456","price":"$1050","description":"15\"x30\"","img":"https://zatista-images.s3.amazonaws.com/products/16277_e4amq5a4eai0i3rvem9ljm3941_MaXvWp3y37tSxTW5_1_642x0.jpg"},{"id":"47456","price":"$1050","desc":"15\"x30\"","img":"https://zatista-images.s3.amazonaws.com/products/16277_e4amq5a4eai0i3rvem9ljm3941_MaXvWp3y37tSxTW5_1_642x0.jpg"},{"id":"65107","price":"$460","desc":"12\"x16\"","img":"https://zatista-images.s3.amazonaws.com/products/183_e989f65b512015fd3d6c84cdff41098c1c5ca846_QOp1p8YLpkD3F0Gs_1_642x0.jpg"}],
 
   removeProduct: function () {
     "use strict";
-
+    var list = JSON.parse(localStorage.getItem('shoppingcart'));
+    var itemName = $(this).closest(".shopping-cart--list-item").find(".product-name").html()
+    var newList = list.filter(item => item.name != itemName);
+    localStorage.setItem('shoppingcart', JSON.stringify(newList));
     var item = $(this).closest(".shopping-cart--list-item");
 
     item.addClass("closing");
@@ -135,7 +113,7 @@ var app = {
   renderTemplates: function () {
     "use strict";
 
-    var products = app.products,
+    var products = JSON.parse(localStorage.getItem('shoppingcart')),
         content = [],
         template = new t( $("#shopping-cart--list-item-template").html() );
 

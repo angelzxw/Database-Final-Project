@@ -1,45 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html >
 <head>
-<!--
-Kool Store Template
-http://www.templatemo.com/preview/templatemo_428_kool_store
--->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=entypo">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <title>Artsify</title>
-    <link rel=icon href=img/icon.png>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/product/bootstrap.css">
+  <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/5175/utf-latest.min.css'>
+  <link href="css/shoppingcart_style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-    <!-- Custom CSS -->
-    <link href="/css/shop-homepage.css" rel="stylesheet">
-    <link href="/css/heroic-features.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-    <link href="/css/edit.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet">
+  <link rel=icon href=img/icon.png>
 
-    <link rel="stylesheet" href="/css/product/normalize.min.css">
-    <link rel="stylesheet" href="/css/product/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/product/animate.css">
-    <link rel="stylesheet" href="/css/product/templatemo-misc.css">
-    <link rel="stylesheet" href="/css/product/templatemo-style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="jquery.js"></script>
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+  <link href="css/heroic-features.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/edit.css" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
-<body>
-    <!--[if lt IE 7]>
-    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="https://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
+
+<body onload="updateTotals()">
 
     <!--Navigation-->
     <nav id='cssmenu'>
@@ -78,10 +81,71 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     </nav>
     <section style='padding-top:10px;font:bold  44px arial;color:#68D800;'></section>
     <!--./Navigation-->
-     {% block body %}
-    {% endblock %}
-    <div class="container">
 
+
+  <div class="main">
+  <h1>Shopping cart</h1>
+
+  <section class="shopping-cart">
+    <ol class="ui-list shopping-cart--list" id="shopping-cart--list">
+      <script id="shopping-cart--list-item-template" type="text/template">
+        <li class="_grid shopping-cart--list-item">
+          <div class="_column product-image">
+            <img class="product-image--img" src="{{=img}}" alt="Item image" />
+          </div>
+          <div class="_column product-info">
+            <h4 class="product-name">{{=name}}</h4>
+            <p class="product-desc">{{=desc}}</p>
+
+          </div>
+          <div class="_column product-modifiers" data-product-price="{{=price}}">
+            <div class="_grid row">
+              <button class="_btn _column product-subtract">&minus;</button>
+              <div class="_column product-qty">1</div>
+              <button class="_btn _column product-plus">&plus;</button>
+            </div>
+            <button class="_btn entypo-trash product-remove">Remove</button>
+            <div class="price product-total-price">${{=price}}</div>
+          </div>
+        </li>
+      </script>
+
+    </ol>
+
+    <footer class="_grid cart-totals">
+      <div class="_column subtotal" id="subtotalCtr">
+        <div class="cart-totals-key">Subtotal</div>
+        <div class="cart-totals-value">$0.00</div>
+      </div>
+      <div class="_column shipping" id="shippingCtr">
+        <div class="cart-totals-key">Shipping</div>
+        <div class="cart-totals-value">$0.00</div>
+      </div>
+      <div class="_column taxes" id="taxesCtr">
+        <div class="cart-totals-key">Taxes (6%)</div>
+        <div class="cart-totals-value">$0.00</div>
+      </div>
+      <div class="_column total" id="totalCtr">
+        <div class="cart-totals-key">Total</div>
+        <div class="cart-totals-value">$0.00</div>
+      </div>
+      <div class="_column checkout">
+        <button class="_btn checkout-btn entypo-forward">Checkout</button>
+      </div>
+      <script>
+        $(document).ready(function(){
+         app.updateTotals();
+        });
+      </script>
+    </footer>
+
+  </section>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js'></script>
+
+    <script  src="js/shoppingcart_index.js"></script>
+    <div class="container">
+        <hr>
         <!-- Footer -->
         <footer>
             <div class="row">
@@ -89,12 +153,6 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
                     <p>Copyright &copy; Artsify 2017</p>
                 </div>
             </div>
-            <script>
-             function onClick(element) {
-               document.getElementById("img01").src = element.src;
-               document.getElementById("modal01").style.display = "block";
-             }
-            </script>
         </footer>
     </div>
     <!-- /.container -->
@@ -192,105 +250,16 @@ http://www.templatemo.com/preview/templatemo_428_kool_store
     </div>
     <!-- END # MODAL LOGIN -->
 
-    <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
-      <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-      <div class="w3-modal-content w3-animate-zoom">
-        <img id="img01" style="width:100%">
-      </div>
-    </div>
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-    <script src="/js/product/vendor/jquery-1.10.1.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/product/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-    <script src="/js/product/jquery.easing-1.3.js"></script>
-
-    <script src="js/jquery.mixitup.min.js"></script>
-
-    <script src="/js/product/pagination.js"></script>
-    <script src="/js/product/pagination.min.js"></script>
-
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/product/bootstrap.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom JavaScript -->
-    {% if not isContactForm %}
-        <script src="/js/main.js"></script>
-    {% endif %}
-    <script src="/js/product/plugins.js"></script>
-    <script src="/js/product/main.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/product/vendor/modernizr-2.6.2.min.js"></script>
-
-    <script>
-    $(window).load(function() {
-    var hash = location.hash;
-    var hashPieces = hash.split('?');
-    var activeTab = $('[href=' + hashPieces[0] + ']');
-
-    activeTab && activeTab.tab('show');
-
-    $(document.body).on("click", "button[data-toggle]", function(event) {
-      location.hash = this.getAttribute("href");
-    });
-    });
-</script>
-<script>
-  // $('#demo').pagination({
-  // dataSource: <%- JSON.stringfy( allArtists) %>,
-  // pageSize: 20,
-  // formatResult: function(data) {
-  //     var result = [];
-  //     for (var i = 0, len = data.length; i < len; i++) {
-  //         result.push(data[i] + ' - good guys');
-  //     }
-  //     return result;
-  // },
-  // callback: function(data, pagination) {
-  //     // template method of yourself
-  //     var html = template(data);
-  //     dataContainer.html(html);
-  // }
-  // });
-</script>
-
-<script>
-    function addToCart() {
-        // localStorage['mylist'] = JSON.stringify(['string1', 'string2']);
-        var shoppingcart = JSON.parse(localStorage.getItem('shoppingcart'));
-        var painting_id = $(".painting_id").attr("id");
-        var name = $(".painting_id").html();
-        var price = $(".price").html().substring(1);
-        var description = $(".description").html();
-        var img = $(".painting_img").attr('src');
-        
-        var m = {
-            id: painting_id,
-            name: name,
-            price: price,
-            desc: description,
-            img: img,
-        }
-
-        
-        if (shoppingcart == undefined) {
-            shoppingcart = [];
-        }
-        
-        if (shoppingcart.indexOf(painting_id) == -1) {
-            shoppingcart.push(m); 
-        }
-
-        localStorage['shoppingcart'] = JSON.stringify(shoppingcart);
-        alert("Item is added to Cart!");
-    }
-</script>
-
-
+   <script src="js/main.js"></script>
+  </script>
 </body>
 </html>

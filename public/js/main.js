@@ -58,6 +58,10 @@ $(function() {
                 break;
 			case "search-form":
 				return true;
+				break;
+			case "shopping-form":
+				return true;
+				break;
             default:
                 return false;
         }

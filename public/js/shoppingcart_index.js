@@ -32,7 +32,7 @@ var app = {
       app.updateTotals();
     }, 500); // Timeout for css animation
   },
-
+  
   addProduct: function () {
     "use strict";
 
@@ -129,3 +129,8 @@ var app = {
 app.renderTemplates();
 app.setProductImages();
 app.attachEvents();
+
+function submitForm() {
+  localStorage.clear();
+  return true;
+}

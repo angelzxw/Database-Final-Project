@@ -127,7 +127,8 @@ function addCustomer(name, email, password){
     });
 }
 
-function addBuy(customer_id, painting_id){
+function addBuy(painting_id, callback){
+    var customer_id = 1;
     pool.connect((err, client, done) => {
         if (err) throw err;
 
@@ -139,7 +140,7 @@ function addBuy(customer_id, painting_id){
                         console.error('Error rolling back client', err.stack);
                     }
                     // release the client back to the pool
-                    done();
+                    callback(err);
                 })
             }
             return !!err;

@@ -86,7 +86,7 @@
   <div class="main">
   <h1>Shopping cart</h1>
 
-  <section class="shopping-cart">
+  <form id = "shopping-form" class="shopping-cart" action = '/shoppingcart/checkout' method='post'>
     <ol class="ui-list shopping-cart--list" id="shopping-cart--list">
       <script id="shopping-cart--list-item-template" type="text/template">
         <li class="_grid shopping-cart--list-item">
@@ -96,7 +96,7 @@
           <div class="_column product-info">
             <h4 class="product-name">{{=name}}</h4>
             <p class="product-desc">{{=desc}}</p>
-
+            <input type = 'hidden'name = 'painting_id' value = {{=id}}>
           </div>
           <div class="_column product-modifiers" data-product-price="{{=price}}">
             <div class="_grid row">
@@ -130,7 +130,7 @@
         <div class="cart-totals-value">$0.00</div>
       </div>
       <div class="_column checkout">
-        <button class="_btn checkout-btn entypo-forward">Checkout</button>
+        <button onclick = 'submitForm()'type='submit' class="_btn checkout-btn entypo-forward">Checkout</button>
       </div>
       <script>
         $(document).ready(function(){
@@ -139,7 +139,7 @@
       </script>
     </footer>
 
-  </section>
+  </form>
 </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js'></script>
 

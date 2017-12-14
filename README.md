@@ -1,6 +1,8 @@
 ## Artsify
 Demo:[Express website](http://ec2-13-58-21-188.us-east-2.compute.amazonaws.com:4000)
+or [Express website](https://artsify.herokuapp.com/)
 Report:[Express website](https://docs.google.com/document/d/1QcMeE4aPVyfvy9l8YfbrsodZoKV5fCDbR0hRsyhHZV0/edit?usp=sharing)
+Presentation: [Express website](https://docs.google.com/presentation/d/1jlNqR41D84bjY-zVK3u-MHvpB0PfF7sTUH9OVSvUYCA/edit?usp=sharing)
 
 This project implemented a fully integrated and comprehensive fine art relational-database management system. Utilizing this database system, an online fine art gallery and marketplace, Artsify, was created to allow users browsing all the information or search specific information related to available artworks and artists in the database. In addition, users would be able to make purchases of the artworks they are interested in, and the database would store the order and update the availability of the artworks accordingly. We used HTML, CSS, JavaScript, and Node.js to build the web application, and in the server-end we deployed our database on PostgreSQL.
 
